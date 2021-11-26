@@ -1,11 +1,11 @@
-#Title: parse_rayyan 
-#Author: Matt Lloyd Jones
-#Date: 26/11/21
-#Description: A function to parse bibliographic dataframes outputted from Rayyan, splitting up the 'notes' column into Inclusion/Exclusion decision, Labels, and Exclusion Reasons
-
-# FUNCTION ----------------------------------------------------------------
-
-#big ole messy function (beta) to remove any old inclusion labels from abstract screening (found in the labels or parsed as html paragraphs)
+#' parse_rayyan
+#' @description A function to parse bibliographic dataframes outputted from Rayyan, splitting up the 'notes' column into Inclusion/Exclusion decision, Labels, and Exclusion Reasons
+#' @details big ole messy function (beta) to remove any old inclusion labels from abstract screening (found in the labels or parsed as html paragraphs)
+#' @author Matt Lloyd Jones
+#' @param rayyan_df A rayyan exported bibliography file
+#'
+#' @return
+#' @export
 parse_rayyan<-function(rayyan_df){
   
   #1. Split the Rayyan markes (in the notes column) up into a list of their constituent parts (Inclusion decision, Label(s) and Exclusion Reasons)
