@@ -27,8 +27,11 @@ install.packages('plyr')
 library(synthesisr)
 library(plyr)
 
-#read in a rayyan exported bibliography file
-rayyan_biblio<-synthesisr::read_refs('https://raw.githubusercontent.com/befriendabacterium/rayyanR/main/example_inputs/tinea_update.ris')
+#source the 'parse_rayyan' function from github
+source("https://raw.githubusercontent.com/befriendabacterium/rayyanR/main/src/parse_rayyan.R")
+
+#read in a rayyan exported bibliography file (example here is the Tinea Update one from Rayyan)
+rayyan_biblio<-synthesisr::read_refs('tinea_update.ris')
 
 #parse rayyan biblio
 rayyan_biblio_cleaned<-parse_rayyan(rayyan_df = rayyan_biblio)
