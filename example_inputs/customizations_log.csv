@@ -1,0 +1,48 @@
+created_at,user_id,user_email,article_id,key,value
+2014-05-22T10:17:22.301Z,5,zbysfedorowicz@gmail.com,14440,included,-1
+2014-05-22T10:17:37.275Z,5,zbysfedorowicz@gmail.com,14440,"""__EXR__background article""",1
+2014-05-22T10:17:47.759Z,5,zbysfedorowicz@gmail.com,14440,"""__EXR__wrong population""",1
+2014-05-22T10:17:53.347Z,5,zbysfedorowicz@gmail.com,14440,"""__EXR__wrong publication type""",1
+2014-05-22T10:18:42.331Z,5,zbysfedorowicz@gmail.com,14442,"""__EXR__wrong population""",1
+2014-05-22T10:19:09.462Z,5,zbysfedorowicz@gmail.com,14442,included,-1
+2014-05-22T10:19:35.041Z,5,zbysfedorowicz@gmail.com,14443,"""__EXR__totally irrelevant to the review""",1
+2014-05-22T10:19:57.400Z,5,zbysfedorowicz@gmail.com,14438,included,-1
+2014-05-22T10:20:00.456Z,5,zbysfedorowicz@gmail.com,14438,"""__EXR__totally irrelevant to the review""",1
+2014-05-22T10:20:13.792Z,5,zbysfedorowicz@gmail.com,14439,included,-1
+2014-05-22T10:20:16.496Z,5,zbysfedorowicz@gmail.com,14439,"""__EXR__totally irrelevant to the review""",1
+2014-05-22T10:20:19.441Z,5,zbysfedorowicz@gmail.com,14439,"""__EXR__wrong population""",1
+2014-05-22T10:20:51.512Z,5,zbysfedorowicz@gmail.com,14437,included,-1
+2014-05-22T10:20:55.399Z,5,zbysfedorowicz@gmail.com,14437,"""__EXR__wrong population""",1
+2014-05-22T10:21:54.350Z,5,zbysfedorowicz@gmail.com,14435,"""need to see full text""",1
+2014-05-22T10:22:23.507Z,5,zbysfedorowicz@gmail.com,14432,"""need to see full text""",1
+2014-05-22T10:22:40.266Z,5,zbysfedorowicz@gmail.com,14436,"""need to see full text""",1
+2014-05-22T10:23:40.096Z,5,zbysfedorowicz@gmail.com,14443,included,-1
+2014-05-22T10:24:41.823Z,5,zbysfedorowicz@gmail.com,14431,included,1
+2014-05-22T10:26:00.967Z,5,zbysfedorowicz@gmail.com,14441,included,1
+2014-05-22T10:26:56.573Z,5,zbysfedorowicz@gmail.com,14444,included,1
+2014-05-22T11:24:18.297Z,5,zbysfedorowicz@gmail.com,14431,"""M.el-G please review""",1
+2014-05-22T11:24:32.988Z,5,zbysfedorowicz@gmail.com,14434,"""M.el-G please review""",1
+2014-05-22T11:24:37.556Z,5,zbysfedorowicz@gmail.com,14441,"""M.el-G please review""",1
+2014-05-22T11:24:45.288Z,5,zbysfedorowicz@gmail.com,14444,"""M.el-G please review""",1
+2014-05-22T11:25:03.031Z,5,zbysfedorowicz@gmail.com,14437,"""M.el-G please review""",1
+2014-05-22T11:25:08.000Z,5,zbysfedorowicz@gmail.com,14438,"""M.el-G please review""",1
+2014-05-22T11:25:13.793Z,5,zbysfedorowicz@gmail.com,14439,"""M.el-G please review""",1
+2014-05-22T11:25:19.729Z,5,zbysfedorowicz@gmail.com,14440,"""M.el-G please review""",1
+2014-05-22T11:25:24.929Z,5,zbysfedorowicz@gmail.com,14442,"""M.el-G please review""",1
+2014-05-22T11:25:29.322Z,5,zbysfedorowicz@gmail.com,14443,"""M.el-G please review""",1
+2014-05-24T11:23:28.164Z,5,zbysfedorowicz@gmail.com,14433,included,-1
+2014-05-24T11:23:57.175Z,5,zbysfedorowicz@gmail.com,14433,"""__EXR__wrong intervention""",1
+2014-05-28T20:22:53.930Z,16,m.el-gohary@soton.ac.uk,14431,included,1
+2014-05-28T20:23:30.041Z,16,m.el-gohary@soton.ac.uk,14432,included,1
+2014-05-28T20:23:45.078Z,5,zbysfedorowicz@gmail.com,14433,"""__EXR__wrong drug""",1
+2014-05-28T20:24:02.248Z,16,m.el-gohary@soton.ac.uk,14434,included,1
+2014-05-28T20:24:34.842Z,16,m.el-gohary@soton.ac.uk,14440,included,-1
+2014-05-28T20:24:42.431Z,5,zbysfedorowicz@gmail.com,14440,"""__EXR__wrong study design""",1
+2014-05-29T07:27:52.827Z,5,zbysfedorowicz@gmail.com,14432,included,1
+2014-05-29T07:28:27.251Z,5,zbysfedorowicz@gmail.com,14433,"""M.el-G please review""",1
+2014-05-29T07:28:35.839Z,5,zbysfedorowicz@gmail.com,14435,"""M.el-G please review""",1
+2014-05-29T07:28:40.899Z,5,zbysfedorowicz@gmail.com,14436,"""M.el-G please review""",1
+2014-06-15T08:18:51.970Z,5,zbysfedorowicz@gmail.com,14434,included,1
+2021-02-22T11:35:37.154Z,5,zbysfedorowicz@gmail.com,14431,included,-1
+2021-02-22T11:35:47.436Z,5,zbysfedorowicz@gmail.com,14431,included,-1
+2021-02-22T11:35:51.232Z,5,zbysfedorowicz@gmail.com,14431,included,-1

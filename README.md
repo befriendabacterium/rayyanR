@@ -1,16 +1,15 @@
 # rayyanR
- Package to process Rayyan outputs in R
+Work-in-progress 'package' to process Rayyan outputs in R
 
 ### Overview and installation
 
-This is the development repository for RayyanR, an R package to process dataframes outputted from the Rayyan screening platform for systematic review (https://rayyan.ai).
+This is the development repository for RayyanR, a not-yet R 'package' to process dataframes outputted from the Rayyan screening platform for systematic review (https://rayyan.ai).
 
-The development version from this repository can be installed as
+The only function, 'parse_rayyan()' can be sourced from this repository as
 follows:
 
 ``` r
-install.packages('devtools')
-devtools::install_github('befriendabacterium/rayyanR')
+source("https://raw.githubusercontent.com/befriendabacterium/rayyanR/main/src/parse_rayyan.R")
 ```
 
 ### Issues and suggestions
@@ -24,11 +23,12 @@ Current a one-function ('parse_rayyan()')package to parse bibliographic datafram
 
 ``` r
 install.packages('synthesisr')
-#install.packages('plyr')
+install.packages('plyr')
 library(synthesisr)
+library(plyr)
 
 #read in a rayyan exported bibliography file
-rayyan_biblio<-synthesisr::read_refs('example_rayyan_df.ris')
+rayyan_biblio<-synthesisr::read_refs('https://raw.githubusercontent.com/befriendabacterium/rayyanR/main/example_inputs/tinea_update.ris')
 
 #parse rayyan biblio
 rayyan_biblio_cleaned<-parse_rayyan(rayyan_df = rayyan_biblio)

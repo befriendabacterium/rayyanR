@@ -3,7 +3,6 @@
 #Date: 26/11/21
 #Description: A function to parse bibliographic dataframes outputted from Rayyan, splitting up the 'notes' column into Inclusion/Exclusion decision, Labels, and Exclusion Reasons
 
-
 # FUNCTION ----------------------------------------------------------------
 
 #big ole messy function (beta) to remove any old inclusion labels from abstract screening (found in the labels or parsed as html paragraphs)
