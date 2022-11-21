@@ -45,4 +45,5 @@ print(summary_df)
 
 ### Citing this package
 
-Please cite this package as: Jones ML & Grainger MJ (2021). rayyanR: An R package to process outputs of the Rayyan screening platform for systematic reviews. [https://github.com/befriendabacterium/rayyanR].
+Please cite this package as: Jones ML & Grainger MJ (2021). rayyanR: An R package to process outputs of the Rayyan screening platform for systematic reviews. <a href="https://github.com/befriendabacterium/rayyanR" target="_blank">https://github.com/befriendabacterium/rayyanR</a>.
+
