@@ -1,7 +1,7 @@
 # rayyanR
-`r badge_repostatus("Active")`
+`r badger::badge_repostatus("Active")`
 
-`r badge_last_commit("befriendabacterium/rayyanR")`
+`r badger::badge_last_commit("befriendabacterium/rayyanR")`
 
 R 'package' to process Rayyan outputs 
 
