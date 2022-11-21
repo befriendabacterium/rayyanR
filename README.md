@@ -1,45 +1,44 @@
----
-output: github_document
-html_preview: false
----
-
-```{r echo=FALSE, results="hide", message=FALSE}
-library("badger")
-```
 
 # rayyanR
 
-```{r, echo = FALSE, results='asis'}
-cat(badger::badge_repostatus("Active"),
-badger::badge_last_commit("befriendabacterium/rayyanR")
-	
-)
-```
+[![Project Status: Active - The project has reached a stable, usable
+state and is being actively
+developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)
+[![](https://img.shields.io/github/last-commit/befriendabacterium/rayyanR.svg)](https://github.com/befriendabacterium/rayyanR/commits/main)
 
-R 'package' to process Rayyan outputs
+R ‘package’ to process Rayyan outputs
 
 ### Overview and installation
 
-RayyanR, an R 'package' to process dataframes outputted from the Rayyan screening platform for systematic review (<https://rayyan.ai>).
+RayyanR, an R ‘package’ to process dataframes outputted from the Rayyan
+screening platform for systematic review (<https://rayyan.ai>).
 
-```{r, eval=FALSE}
+``` r
 remotes::install_github("https://github.com/befriendabacterium/rayyanR")
-
 ```
 
 ### Issues and suggestions
 
-Please report any issues and suggestions on the [issues link](https://github.com/befriendabacterium/rayyanR/issues) for the repository.
+Please report any issues and suggestions on the [issues
+link](https://github.com/befriendabacterium/rayyanR/issues) for the
+repository.
 
 ### Package overview
 
-Currently a one-function ('parse_rayyan()') package to parse bibliographic dataframes outputted from Rayyan, splitting up the 'notes' column into Inclusion/Exclusion decision, Labels, and Exclusion Reasons.
+Currently a one-function (‘parse_rayyan()’) package to parse
+bibliographic dataframes outputted from Rayyan, splitting up the ‘notes’
+column into Inclusion/Exclusion decision, Labels, and Exclusion Reasons.
 
-```{r}
+``` r
 #install.packages('synthesisr')
 #install.packages('plyr')
 library(synthesisr)
 library(plyr)
+```
+
+    ## Warning: package 'plyr' was built under R version 4.1.3
+
+``` r
 library(rayyanR)
 
 #read in a rayyan exported bibliography file (example here is the Tinea Update one from Rayyan)
@@ -52,5 +51,10 @@ rayyan_biblio_cleaned<-rayyanR::parse_rayyan(rayyan_df = rayyan_biblio)
 summary_df<-plyr::count(rayyan_biblio_cleaned$finaldecision)
 colnames(summary_df)<-c('decision','records_n')
 print(summary_df)
-
 ```
+
+    ##   decision records_n
+    ## 1 Conflict         1
+    ## 2 Excluded         1
+    ## 3 Included         2
+    ## 4     <NA>        10
