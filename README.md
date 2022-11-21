@@ -19,7 +19,7 @@ link](https://github.com/befriendabacterium/rayyanR/issues) for the repository.
 
 ### Package overview
 
-Current a one-function ('parse_rayyan()')package to parse bibliographic dataframes outputted from Rayyan, splitting up the 'notes' column into Inclusion/Exclusion decision, Labels, and Exclusion Reasons. Very early stages so I go easy and I suggest you use the following pipeline with validation (script available [here](https://github.com/befriendabacterium/rayyanR/main/src/example.R)):
+Current a one-function ('parse_rayyan()')package to parse bibliographic dataframes outputted from Rayyan, splitting up the 'notes' column into Inclusion/Exclusion decision, Labels, and Exclusion Reasons. Very early stages so go easy and I suggest you use the following pipeline with validation (script available [here](https://github.com/befriendabacterium/rayyanR/main/src/example.R)):
 
 ``` r
 install.packages('synthesisr')
@@ -40,5 +40,9 @@ rayyan_biblio_cleaned<-parse_rayyan(rayyan_df = rayyan_biblio)
 summary_df<-plyr::count(rayyan_biblio_cleaned$finaldecision)
 colnames(summary_df)<-c('decision','records_n')
 print(summary_df)
+
+### Citing this package
+
+Please cite this package as: Jones ML & Grainger MJ (2021). rayyanR: An R package to process outputs of the Rayyan screening platform for systematic reviews. https://github.com/nealhaddaway/bibfix.
 
 ```
