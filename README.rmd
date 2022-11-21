@@ -1,7 +1,22 @@
-# rayyanR
-`r badger::badge_repostatus("Active")`
+---
+output:
+  md_document:
+    variant: gfm
+html_preview: false
+---
 
-`r badger::badge_last_commit("befriendabacterium/rayyanR")`
+```{r echo=FALSE, results="hide", message=FALSE}
+library("badger")
+```
+
+# rayyanR
+
+```{r, echo = FALSE, results='asis'}
+cat(badger::badge_repostatus("Active"),
+badger::badge_last_commit("befriendabacterium/rayyanR")
+	
+)
+```
 
 R 'package' to process Rayyan outputs 
 
@@ -9,7 +24,7 @@ R 'package' to process Rayyan outputs
 
 RayyanR, an R 'package' to process dataframes outputted from the Rayyan screening platform for systematic review (https://rayyan.ai).
 
-``` r
+``` {r, eval=FALSE}
 remotes::install_github("https://github.com/befriendabacterium/rayyanR")
 
 ```
@@ -21,9 +36,9 @@ Please report any issues and suggestions on the [issues link](https://github.com
 
 Currently a one-function ('parse_rayyan()') package to parse bibliographic dataframes outputted from Rayyan, splitting up the 'notes' column into Inclusion/Exclusion decision, Labels, and Exclusion Reasons.
 
-``` r
-install.packages('synthesisr')
-install.packages('plyr')
+``` {r}
+#install.packages('synthesisr')
+#install.packages('plyr')
 library(synthesisr)
 library(plyr)
 library(rayyanR)
