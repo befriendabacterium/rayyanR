@@ -10,7 +10,7 @@ parse_rayyan(rayyan_df)
 \item{rayyan_df}{A rayyan exported bibliography file}
 }
 \value{
-
+A dataframe
 }
 \description{
 A function to parse bibliographic dataframes outputted from Rayyan, splitting up the 'notes' column into Inclusion/Exclusion decision, Labels, and Exclusion Reasons

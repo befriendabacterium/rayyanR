@@ -4,7 +4,7 @@
 #' @author Matt Lloyd Jones
 #' @param rayyan_df A rayyan exported bibliography file
 #'
-#' @return
+#' @return A dataframe 
 #' @export
 parse_rayyan<-function(rayyan_df){
   
