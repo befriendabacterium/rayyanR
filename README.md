@@ -36,11 +36,8 @@ library(synthesisr)
 library(plyr)
 ```
 
-    ## Warning: package 'plyr' was built under R version 4.1.3
-
 ``` r
 library(rayyanR)
-
 #read in a rayyan exported bibliography file (example here is the Tinea Update one from Rayyan)
 rayyan_biblio<-synthesisr::read_ref('https://raw.githubusercontent.com/befriendabacterium/rayyanR/main/example_inputs/tinea_update.ris')
 
@@ -52,9 +49,12 @@ summary_df<-plyr::count(rayyan_biblio_cleaned$finaldecision)
 colnames(summary_df)<-c('decision','records_n')
 print(summary_df)
 ```
-
     ##   decision records_n
     ## 1 Conflict         1
     ## 2 Excluded         1
     ## 3 Included         2
     ## 4     <NA>        10
+
+### Citing this package
+
+Please cite this package as: Jones ML & Grainger MJ (2021). rayyanR: An R package to process outputs of the Rayyan screening platform for systematic reviews. <a href="https://github.com/befriendabacterium/rayyanR" target="_blank">https://github.com/befriendabacterium/rayyanR</a>.
