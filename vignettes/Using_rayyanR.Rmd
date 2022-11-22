@@ -28,7 +28,7 @@ rayyan_biblio<-synthesisr::read_ref('https://raw.githubusercontent.com/befrienda
 
 ```{r}
 #parse rayyan biblio
-rayyan_biblio_cleaned<-parse_rayyan(rayyan_df = rayyan_biblio)
+rayyan_biblio_cleaned<-rayyanR::parse_rayyan(rayyan_df = rayyan_biblio)
 
 ```
 

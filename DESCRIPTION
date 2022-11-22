@@ -1,15 +1,17 @@
 Package: rayyanR
-Title: What the Package Does (One Line, Title Case)
+Title: Parse bibliographic dataframes outputted from Rayyan
 Version: 0.0.0.9000
-Authors@R: 
-    person("First", "Last", , "first.last@example.com", role = c("aut", "cre"),
-           comment = c(ORCID = "YOUR-ORCID-ID"))
-Description: What the package does (one paragraph).
+Authors@R: c(person("Matt", "Lloyd Jones", role = c("aut", "cre"),
+                     email = "m.l.jones@exeter.ac.uk", comment = c(ORCID = "0000-0001-5841-4554")),
+                     person("Matthew", "Grainger", role = "aut","matthewjamesgrainger@gmail.com",comment=c(ORCID= "0000-0001-8426-6495")))
+Description: A package to parse bibliographic dataframes outputted from Rayyan, splitting up the 'notes' column into Inclusion/Exclusion decision, Labels, and Exclusion Reasons. 
 License: GPL (>= 3)
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
-RoxygenNote: 7.1.2
+RoxygenNote: 7.2.1
 Suggests: 
     knitr,
     rmarkdown
 VignetteBuilder: knitr
+URL: https://github.com/befriendabacterium/rayyanR
+BugReports: https://github.com/befriendabacterium/rayyanR/issues
