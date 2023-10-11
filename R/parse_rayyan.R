@@ -3,10 +3,10 @@
 #' @details big ole messy function (beta) to remove any old inclusion labels from abstract screening (found in the labels or parsed as html paragraphs)
 #' @author Matt Lloyd Jones
 #' @param rayyan_df A rayyan exported bibliography file
-#'
+#' @param nR Minimum number of reviewers for a decision (default is greater than 2)
 #' @return A dataframe 
 #' @export
-parse_rayyan<-function(rayyan_df){
+parse_rayyan<-function(rayyan_df, nR=2){
   
   #1. Remove any old inclusion labels from previous screenings abstract screening (parsed as paragraphs)
   rayyan_df$notes<-sub("<p>.*</p> ","",rayyan_df$notes)
@@ -57,17 +57,17 @@ parse_rayyan<-function(rayyan_df){
   rayyan_df$finaldecision[conflicts]<-'Conflict'
   
   #count where 2 reviewers decided include
-  included<-which(lengths(regmatches(rayyan_df$rayyan_decisions,gregexpr('Included',rayyan_df$rayyan_decisions)))==2)
+  included<-which(lengths(regmatches(rayyan_df$rayyan_decisions,gregexpr('Included',rayyan_df$rayyan_decisions)))>nR)
   #change final decision to Included for these
   rayyan_df$finaldecision[included]<-'Included'
   
   #count where 2 reviewers decided exclude
-  excluded<-which(lengths(regmatches(rayyan_df$rayyan_decisions,gregexpr('Excluded',rayyan_df$rayyan_decisions)))==2)
+  excluded<-which(lengths(regmatches(rayyan_df$rayyan_decisions,gregexpr('Excluded',rayyan_df$rayyan_decisions)))>nR)
   #change final decision to Excluded for these
   rayyan_df$finaldecision[excluded]<-'Excluded'
   
   #count where 2 reviewers decided Maybe
-  maybe<-which(lengths(regmatches(rayyan_df$rayyan_decisions,gregexpr('Maybe',rayyan_df$rayyan_decisions)))==2)
+  maybe<-which(lengths(regmatches(rayyan_df$rayyan_decisions,gregexpr('Maybe',rayyan_df$rayyan_decisions)))>nR)
   #change final decision to Excluded for these
   rayyan_df$finaldecision[maybe]<-'Maybe'
   
