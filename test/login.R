@@ -1,0 +1,13 @@
+#ref: https://httr2.r-lib.org/
+
+install.packages('httr2')
+library(httr)
+url<-'https://rayyan.ai/api/v1/user_info/'
+req <- request(url)
+rayyan_tokens<-jsonlite::read_json("rayyan_tokens.json")
+token<-rayyan_tokens$access_token
+req<-req_auth_bearer_token(req, token)
+
+req_dry_run(req)
+
+resp<-req_perform(req)
