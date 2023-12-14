@@ -1,15 +1,14 @@
-
 #' list_reviews_raw
 #'
 #' gets reviews from the rayyan API and outputs an R object
 #'
 #' @param api_env the api envrionment from load_tokens_and_env()
 #' or login_tokens_and_env()
-#' 
+#'
 #' @keywords internal
 #'
 #' @return the R object containing the result of the API call
-list_reviews_raw <- function(api_env){
+list_reviews_raw <- function(api_env) {
     api_path <- "/api/v1/reviews"
     url <- paste0(api_env$base_url, "/", api_path)
     req <- httr2::request(url)
@@ -29,7 +28,7 @@ list_reviews_raw <- function(api_env){
 #' or login_tokens_and_env()
 #'
 #' @return a dataframe containing the ID, title, and owner of reviews
-get_reviews <- function(api_env){
+get_reviews <- function(api_env) {
     revs <- list_reviews_raw(api_env)
     reviews <- data.frame(
         id = integer(),
@@ -68,8 +67,8 @@ get_reviews <- function(api_env){
 #' @keywords internal
 #'
 #' @return the R object containing the result of the API call
-get_review_info_raw <- function(api_env, id){
-    api_path <- paste0("/api/v1/reviews/",id)
+get_review_info_raw <- function(api_env, id) {
+    api_path <- paste0("/api/v1/reviews/", id)
     url <- paste0(api_env$base_url, "/", api_path)
     req <- httr2::request(url)
     req <- httr2::req_auth_bearer_token(req, api_env$access_token)
@@ -90,8 +89,8 @@ get_review_info_raw <- function(api_env, id){
 #' @keywords internal
 #'
 #' @return the R object containing the result of the API call
-get_review_results_raw <- function(api_env, id){
-    api_path <- paste0("/api/v1/reviews/",id,"/results")
+get_review_results_raw <- function(api_env, id) {
+    api_path <- paste0("/api/v1/reviews/", id, "/results")
     url <- paste0(api_env$base_url, "/", api_path)
     req <- httr2::request(url)
     req <- httr2::req_auth_bearer_token(req, api_env$access_token)
@@ -113,7 +112,7 @@ get_review_results_raw <- function(api_env, id){
 #' @keywords internal
 #'
 #' @return the R object containing the result of the API call
-get_aws_presigned_url <- function(api_env,id){
+get_aws_presigned_url <- function(api_env, id) {
     api_path <- paste0("/api/v1/reviews/", id, "/searches/new")
     url <- paste0(api_env$base_url, "/", api_path)
     req <- httr2::request(url)

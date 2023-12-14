@@ -11,7 +11,7 @@
 load_tokens_and_env <- function(
     creds,
     base_url = "https://rayyan.ai"
-){
+) {
     api_env <- jsonlite::read_json(creds)
     api_env$base_url <- base_url
     return(api_env)
