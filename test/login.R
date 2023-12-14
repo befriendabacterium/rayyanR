@@ -1,7 +1,7 @@
 #ref: https://httr2.r-lib.org/
 
 install.packages('httr2')
-library(httr)
+library(httr2)
 url<-'https://rayyan.ai/api/v1/user_info/'
 req <- request(url)
 rayyan_tokens<-jsonlite::read_json("rayyan_tokens.json")
