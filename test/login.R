@@ -8,7 +8,11 @@ rayyan_tokens<-jsonlite::read_json("rayyan_tokens.json")
 token<-rayyan_tokens$access_token
 req<-httr2::req_auth_bearer_token(req, token)
 
+#dry run
 httr2::req_dry_run(req)
 
+#perform the request
 resp<-httr2::req_perform(req)
-resp
+
+#get json on user_info
+resp_body_json(resp)
