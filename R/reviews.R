@@ -1,4 +1,4 @@
-#' list_reviews_raw
+#' get_reviews_raw
 #'
 #' gets reviews from the rayyan API and outputs an R object
 #'
@@ -8,7 +8,7 @@
 #' @keywords internal
 #'
 #' @return the R object containing the result of the API call
-list_reviews_raw <- function(api_env) {
+get_reviews_raw <- function(api_env) {
     api_path <- "/api/v1/reviews"
     url <- paste0(api_env$base_url, "/", api_path)
     req <- httr2::request(url)
@@ -29,7 +29,7 @@ list_reviews_raw <- function(api_env) {
 #'
 #' @return a dataframe containing the ID, title, and owner of reviews
 get_reviews <- function(api_env) {
-    revs <- list_reviews_raw(api_env)
+    revs <- get_reviews_raw(api_env)
     reviews <- data.frame(
         id = integer(),
         title = character(),
