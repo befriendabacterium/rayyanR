@@ -114,14 +114,12 @@ get_review_results_raw <- function(api_env, id) {
 get_review_results_df <- function(api_env, id) {
   body<-get_review_results_raw(api_env, id)
   #parse json body (list format) to data.frame with nested lists
-  reviews_results_df<-data.frame(t(sapply(review_results$data,c)))
-  #unnest the customizations column where the inclusion/exclusion decisions are stored (in a list in a list...)
-  reviews_results_df<-tidyr::unnest_wider(reviews_results_df,customizations)
-  #rename 'included' as 'decision' because its more intuitive
-  reviews_results_df<-dplyr::rename(reviews_results_df,decision=included)
-  #unnest the decision list
-  reviews_results_df<-tidyr::unnest_wider(reviews_results_df,decision, names_sep = '_')
-  return(reviews_results_df)
+  review_results_df<-data.frame(t(sapply(body$data,c)))
+  #unnest all the list columns
+  review_results_df<-unnest_all(review_results_df)
+  # #rename 'included' as 'decision' because its more intuitive
+  # reviews_results_df<-dplyr::rename(reviews_results_df,decision=included)
+  return(review_results_df)
 }
 
 
