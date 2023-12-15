@@ -9,8 +9,8 @@
 #'
 #' @return the R object containing the result of the API call
 get_reviews_raw <- function(api_env) {
-    api_path <- "/api/v1/reviews"
-    url <- paste0(api_env$base_url, "/", api_path)
+    reviews_route <- "/api/v1/reviews"
+    url <- paste0(api_env$base_url, "/", reviews_route)
     req <- httr2::request(url)
     req <- httr2::req_auth_bearer_token(req, api_env$access_token)
     resp <- httr2::req_perform(req)
@@ -68,8 +68,8 @@ get_reviews <- function(api_env) {
 #'
 #' @return the R object containing the result of the API call
 get_review_info_raw <- function(api_env, id) {
-    api_path <- paste0("/api/v1/reviews/", id)
-    url <- paste0(api_env$base_url, "/", api_path)
+    reviews_route <- paste0("/api/v1/reviews/", id)
+    url <- paste0(api_env$base_url, "/", reviews_route)
     req <- httr2::request(url)
     req <- httr2::req_auth_bearer_token(req, api_env$access_token)
     resp <- httr2::req_perform(req)
@@ -90,8 +90,8 @@ get_review_info_raw <- function(api_env, id) {
 #'
 #' @return the R object containing the result of the API call
 get_review_results_raw <- function(api_env, id) {
-    api_path <- paste0("/api/v1/reviews/", id, "/results")
-    url <- paste0(api_env$base_url, "/", api_path)
+    reviews_route <- paste0("/api/v1/reviews/", id, "/results")
+    url <- paste0(api_env$base_url, "/", reviews_route)
     req <- httr2::request(url)
     req <- httr2::req_auth_bearer_token(req, api_env$access_token)
     resp <- httr2::req_perform(req)
@@ -113,8 +113,8 @@ get_review_results_raw <- function(api_env, id) {
 #'
 #' @return the R object containing the result of the API call
 get_aws_presigned_url <- function(api_env, id) {
-    api_path <- paste0("/api/v1/reviews/", id, "/searches/new")
-    url <- paste0(api_env$base_url, "/", api_path)
+    reviews_route <- paste0("/api/v1/reviews/", id, "/searches/new")
+    url <- paste0(api_env$base_url, "/", reviews_route)
     req <- httr2::request(url)
     req <- httr2::req_auth_bearer_token(req, api_env$access_token)
     resp <- httr2::req_perform(req)
