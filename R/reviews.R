@@ -2,7 +2,7 @@
 #'
 #' gets reviews from the rayyan API and outputs an R object
 #'
-#' @param api_env the api envrionment from load_tokens_and_env()
+#' @param api_env the api environment from load_tokens_and_env()
 #' or login_tokens_and_env()
 #'
 #' @keywords internal
@@ -24,7 +24,7 @@ get_reviews_raw <- function(api_env) {
 #' gets the reviews from the rayyan API and returns the ID, title,
 #' and owner in a dataframe
 #'
-#' @param api_env the api envrionment from load_tokens_and_env()
+#' @param api_env the api environment from load_tokens_and_env()
 #' or login_tokens_and_env()
 #'
 #' @return a dataframe containing the ID, title, and owner of reviews
@@ -59,7 +59,7 @@ get_reviews <- function(api_env) {
 #'
 #' gets a review from the rayyan API and outputs the metadata an R object
 #'
-#' @param api_env the api envrionment from load_tokens_and_env()
+#' @param api_env the api environment from load_tokens_and_env()
 #' or login_tokens_and_env()
 #' @param id the rayyan ID of the review to get - this can be obtained via
 #' get_reviews
@@ -81,7 +81,7 @@ get_review_info_raw <- function(api_env, id) {
 #'
 #' gets a review from the rayyan API and outputs the results an R object
 #'
-#' @param api_env the api envrionment from load_tokens_and_env()
+#' @param api_env the api environment from load_tokens_and_env()
 #' or login_tokens_and_env()
 #' @param id the rayyan ID of the review to get - this can be obtained via
 #' get_reviews
@@ -99,12 +99,37 @@ get_review_results_raw <- function(api_env, id) {
     return(body)
 }
 
+#' get_review_results_df
+#'
+#' gets a review from the rayyan API and outputs the results an R object
+#'
+#' @param api_env the api environment from load_tokens_and_env()
+#' or login_tokens_and_env()
+#' @param id the rayyan ID of the review to get - this can be obtained via
+#' get_reviews
+#'
+#' @keywords internal
+#'
+#' @return the R object containing the result of the API call
+get_review_results_df <- function(api_env, id) {
+  body<-get_review_results_raw(api_env, id)
+  #parse json body (list format) to data.frame with nested lists
+  reviews_results_df<-data.frame(t(sapply(review_results$data,c)))
+  #unnest the customizations column where the inclusion/exclusion decisions are stored (in a list in a list...)
+  reviews_results_df<-tidyr::unnest_wider(reviews_results_df,customizations)
+  #rename 'included' as 'decision' because its more intuitive
+  reviews_results_df<-dplyr::rename(reviews_results_df,decision=included)
+  #unnest the decision list
+  reviews_results_df<-tidyr::unnest_wider(reviews_results_df,decision, names_sep = '_')
+  return(reviews_results_df)
+}
+
 
 #' get_aws_presigned_url
 #'
 #' gets a URL to enable uploading of files or artilces
 #'
-#' @param api_env the api envrionment from load_tokens_and_env()
+#' @param api_env the api environment from load_tokens_and_env()
 #' or login_tokens_and_env()
 #' @param id the rayyan ID of the review to get - this can be obtained via
 #' get_reviews
