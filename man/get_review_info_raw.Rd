@@ -7,7 +7,7 @@
 get_review_info_raw(api_env, id)
 }
 \arguments{
-\item{api_env}{the api envrionment from load_tokens_and_env()
+\item{api_env}{the api environment from load_tokens_and_env()
 or login_tokens_and_env()}
 
 \item{id}{the rayyan ID of the review to get - this can be obtained via

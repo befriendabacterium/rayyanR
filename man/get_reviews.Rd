@@ -7,7 +7,7 @@
 get_reviews(api_env)
 }
 \arguments{
-\item{api_env}{the api envrionment from load_tokens_and_env()
+\item{api_env}{the api environment from load_tokens_and_env()
 or login_tokens_and_env()}
 }
 \value{

@@ -4,7 +4,10 @@
 #' https://stackoverflow.com/questions/63786411/how-to-unnest-wider-with-loop-over-all-the-columns-containing-lists
 #'
 #' @param df the dataframe that came from the json file
-#'
+#' @importFrom magrittr %>%
+#' @importFrom purrr keep
+#' @importFrom tidyr unnest
+#' @importFrom tidyr unnest_wider
 #' @keywords internal
 #'
 #' @return the R object containing the unnested dataframe
