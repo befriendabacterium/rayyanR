@@ -1,40 +1,32 @@
 
-#' load_tokens_and_env
+#' load_tokens
 #'
 #' loads API credentials from a JSON file
-#' and returns an object containing the tokens and
-#' API URL
 #' @param creds the json file containing the credentials exported from rayyan
 #' @param base_url the API base URL (defaults to production)
 #'
 #' @return an api environment to be passed to the other functions
-load_tokens_and_env <- function(
-    creds,
-    base_url = "https://rayyan.ai"
+load_tokens <- function(
+    creds
 ) {
-    api_env <- jsonlite::read_json(creds)
-    api_env$base_url <- base_url
-    return(api_env)
+    api_tokens <- jsonlite::read_json(creds)
+    return(api_tokens)
 }
 
 
-#' login_tokens_and_env
+#' login_tokens
 #'
 #' imports the API tokens from function arguments
-#' and returns an object containing the tokens and
-#' API URL
 #' @param creds the json file containing the credentials exported from rayyan
 #' @param base_url the API base URL (defaults to production)
 #'
 #' @return an api environment to be passed to the other functions
-login_tokens_and_env <- function(
+login_tokens <- function(
     access_token,
-    refresh_token,
-    base_url = "https://rayyan.ai"
+    refresh_token
 ) {
-    api_env <- NULL
-    api_env$access_token <- access_token
-    api_env$refresh_token <- refresh_token
-    api_env$base_url <- base_url
-    return(api_env)
+    api_tokens <- NULL
+    api_tokens$access_token <- access_token
+    api_tokens$refresh_token <- refresh_token
+    return(api_tokens)
 }
