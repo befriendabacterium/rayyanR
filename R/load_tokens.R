@@ -34,8 +34,9 @@ login_tokens <- function(
 
 #' refresh_tokens
 #'
-#' imports the API tokens from function arguments
+#' refreshes the API tokens from function arguments
 #' @param creds local path to the json file containing the credentials exported from rayyan
+#' @param update_local option to overwrite existing json file containing the credentials with the new, updated credentials. Defaults to TRUE.
 #' @param base_url the API base URL (defaults to production)
 #'
 #' @return an api environment to be passed to the other functions
