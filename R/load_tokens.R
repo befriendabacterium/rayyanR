@@ -2,7 +2,7 @@
 #' load_tokens
 #'
 #' loads API credentials from a JSON file
-#' @param creds the json file containing the credentials exported from rayyan
+#' @param creds local path to the json file containing the credentials exported from rayyan
 #' @param base_url the API base URL (defaults to production)
 #'
 #' @return an api environment to be passed to the other functions
@@ -17,7 +17,7 @@ load_tokens <- function(
 #' login_tokens
 #'
 #' imports the API tokens from function arguments
-#' @param creds the json file containing the credentials exported from rayyan
+#' @param creds local path to the json file containing the credentials exported from rayyan
 #' @param base_url the API base URL (defaults to production)
 #'
 #' @return an api environment to be passed to the other functions
