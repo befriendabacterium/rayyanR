@@ -2,7 +2,7 @@
 #'
 #' gets reviews from the rayyan API and outputs an R object
 #'
-#' @param api_tokens the api environment from load_tokens_and_env()
+#' @param api_tokens the api tokens from load_tokens()
 #' or login_tokens_and_env()
 #'
 #' @keywords internal
@@ -24,7 +24,7 @@ get_reviews_raw <- function(api_tokens) {
 #' gets the reviews from the rayyan API and returns the ID, title,
 #' and owner in a dataframe
 #'
-#' @param api_tokens the api environment from load_tokens_and_env()
+#' @param api_tokens the api tokens from load_tokens()
 #' or login_tokens_and_env()
 #'
 #' @return a dataframe containing the ID, title, and owner of reviews
@@ -59,7 +59,7 @@ get_reviews <- function(api_tokens) {
 #'
 #' gets a review from the rayyan API and outputs the metadata an R object
 #'
-#' @param api_tokens the api environment from load_tokens_and_env()
+#' @param api_tokens the api tokens from load_tokens()
 #' or login_tokens_and_env()
 #' @param id the rayyan ID of the review to get - this can be obtained via
 #' get_reviews
@@ -81,7 +81,7 @@ get_review_info_raw <- function(api_tokens, id) {
 #'
 #' gets a review from the rayyan API and outputs the results an R object
 #'
-#' @param api_tokens the api environment from load_tokens_and_env()
+#' @param api_tokens the api tokens from load_tokens()
 #' or login_tokens_and_env()
 #' @param id the rayyan ID of the review to get - this can be obtained via
 #' get_reviews
@@ -103,7 +103,7 @@ get_review_results_raw <- function(api_tokens, id) {
 #'
 #' gets a review from the rayyan API and outputs the results an R object
 #'
-#' @param api_tokens the api environment from load_tokens_and_env()
+#' @param api_tokens the api tokens from load_tokens()
 #' or login_tokens_and_env()
 #' @param id the rayyan ID of the review to get - this can be obtained via
 #' get_reviews
@@ -133,7 +133,7 @@ get_review_results_df <- function(api_tokens, id) {
 #'
 #' gets a URL to enable uploading of files or artilces
 #'
-#' @param api_tokens the api environment from load_tokens_and_env()
+#' @param api_tokens the api tokens from load_tokens()
 #' or login_tokens_and_env()
 #' @param id the rayyan ID of the review to get - this can be obtained via
 #' get_reviews
