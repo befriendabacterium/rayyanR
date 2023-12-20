@@ -121,9 +121,10 @@ get_review_results_df <- function(api_tokens, id) {
   review_results_df$authors<-lapply(lapply(review_results_df$authors,unlist),function(x){paste(x,collapse='; ')})
   #unnest all the list columns
   review_results_df<-unnest_all(review_results_df)
+  #remove redundant _1's (for unnested columns)
+  colnames(review_results_df)<-gsub("_1", "", colnames(review_results_df))
   # #rename 'included' as 'decision' because its more intuitive
   #reviews_results_df<-dplyr::rename(reviews_results_df,decision=included)
-  
   
   return(review_results_df)
 }
