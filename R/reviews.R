@@ -153,9 +153,37 @@ get_aws_presigned_url <- function(api_tokens, id) {
 }
 
 
+#' rename_included_cols_values
+#'
+#' renames the included columns' values so they are explicitly 'Excluded' (-1), 'Maybe' (0), and 'Included' (1)
+#'
+#' @param review_results_df the dataframe with the review data from get_review_results_df() API call and tidying function
 #' rename_included_cols
 #'
-#' renames the included columns so that they have explicit reviewer names rather than reviewer id
+#' @keywords internal
+#'
+#' @return the R object containing the tidied dataframe
+#' 
+rename_included_cols_values <- function(review_results_df) {
+  
+  #identify included cols by number
+  included_colids<-grep('customizations_included',colnames(review_results_df))
+  
+  #coerce them to character
+  review_results_df[,included_colids]<-apply(review_results_df[,included_colids],2,as.character)
+  
+  #rename them explicitly
+  review_results_df[,included_colids][review_results_df[,included_colids]=='-1']<-'Excluded'
+  review_results_df[,included_colids][review_results_df[,included_colids]=='0']<-'Maybe'
+  review_results_df[,included_colids][review_results_df[,included_colids]=='1']<-'Included'
+  
+  return(review_results_df)
+}
+
+
+#' rename_included_cols_names
+#'
+#' renames the included columns' names so that they have explicit reviewer names rather than reviewer id
 #'
 #' @param review_info a list with the review data from get_review_info() API call function
 #' @param review_results_df the dataframe with the review data from get_review_results_df() API call and tidying function
@@ -166,7 +194,7 @@ get_aws_presigned_url <- function(api_tokens, id) {
 #'
 #' @return the R object containing the tidied dataframe
 #' 
-rename_included_cols <- function(review_info, review_results_df, rename_with='name') {
+rename_included_cols_names <- function(review_info, review_results_df, rename_with='name') {
   
   if (!rename_with%in%c('name','email')){stop('\'rename with\' must be either \'name\' or \'email\'')}
   
@@ -174,6 +202,7 @@ rename_included_cols <- function(review_info, review_results_df, rename_with='na
   allcollaborators_df<-data.frame(t(sapply(review_info$all_collaborators,c)))
   reviewer_info_df<-rbind(owner_df,allcollaborators_df)
   
+  #identify included cols by number
   included_colids<-grep('customizations_included',colnames(review_results_df))
   reviewer_nos<-as.character(readr::parse_number(colnames(review_results_df)[included_colids]))
   
@@ -195,6 +224,3 @@ rename_included_cols <- function(review_info, review_results_df, rename_with='na
   
   return(review_results_df)
 }
-
-
-
