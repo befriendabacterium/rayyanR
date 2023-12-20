@@ -9,7 +9,7 @@
 #'
 #' @return the R object containing the unnested dataframe
 unnest_all <- function(df) {
-  list_columns <- df %>% keep(is.list) %>% names()
+  list_columns <- df %>% purrr::keep(is.list) %>% names()
   
   if (length(list_columns) == 0) {
     return(df)
@@ -18,7 +18,7 @@ unnest_all <- function(df) {
   for (list_column in list_columns) {
     df <-
       df %>%
-      unnest_wider(list_column, names_sep = "_")
+      tidyr::unnest_wider(list_column, names_sep = "_")
   }
   unnest_all(df)
 }
