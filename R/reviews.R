@@ -151,3 +151,50 @@ get_aws_presigned_url <- function(api_tokens, id) {
     body <- httr2::resp_body_json(resp)
     return(body)
 }
+
+
+#' rename_included_cols
+#'
+#' renames the included columns so that they have explicit reviewer names rather than reviewer id
+#'
+#' @param review_info a list with the review data from get_review_info() API call function
+#' @param review_results_df the dataframe with the review data from get_review_results_df() API call and tidying function
+#' @param rename_with what should the IDs be renamed with. Must be 'name' or 'email'.
+#' rename_included_cols
+#'
+#' @keywords internal
+#'
+#' @return the R object containing the tidied dataframe
+#' 
+rename_included_cols <- function(review_info, review_results_df, rename_with='name') {
+  
+  if (!rename_with%in%c('name','email')){stop('\'rename with\' must be either \'name\' or \'email\'')}
+  
+  owner_df<-data.frame(t(sapply(review_info$owner,c)))
+  allcollaborators_df<-data.frame(t(sapply(review_info$all_collaborators,c)))
+  reviewer_info_df<-rbind(owner_df,allcollaborators_df)
+  
+  included_colids<-grep('customizations_included',colnames(review_results_df))
+  reviewer_nos<-as.character(readr::parse_number(colnames(review_results_df)[included_colids]))
+  
+  if(rename_with=='name'){
+    #install.packages('stringi')
+    reviewer_to_s<-gsub(" ", "",reviewer_info_df$to_s[match(reviewer_nos,reviewer_info_df$id)])
+    colnames(review_results_df)[included_colids]<-stringr::str_replace_all(string=colnames(review_results_df)[included_colids],
+                                                                           pattern=reviewer_nos,
+                                                                           replacement=reviewer_to_s)
+  }
+  
+  if(rename_with=='email'){
+    #install.packages('stringi')
+    reviewer_emails<-gsub(" ", "",reviewer_info_df$email[match(reviewer_nos,reviewer_info_df$id)])
+    colnames(review_results_df)[included_colids]<-stringr::str_replace_all(string=colnames(review_results_df)[included_colids],
+                                                                           pattern=reviewer_nos,
+                                                                           replacement=reviewer_emails)
+  }
+  
+  return(review_results_df)
+}
+
+
+
