@@ -30,3 +30,36 @@ login_tokens <- function(
     api_tokens$refresh_token <- refresh_token
     return(api_tokens)
 }
+
+
+#' refresh_tokens
+#'
+#' imports the API tokens from function arguments
+#' @param creds local path to the json file containing the credentials exported from rayyan
+#' @param base_url the API base URL (defaults to production)
+#'
+#' @return an api environment to be passed to the other functions
+refresh_tokens <- function(
+    creds, update_local=T
+) {
+    api_tokens <- jsonlite::read_json(creds)
+    api_tokens_fresh <- oauth_flow_refresh(
+                        httr2::oauth_client("rayyan.ai", "https://rayyan.ai/oauth/token"),
+                        refresh_token = api_tokens$refresh_token,
+                        scope = NULL,
+                        token_params = list())
+    
+    #simplify the updated tokens file to a list in same format as downloadable ones
+    api_tokens_fresh <- list(access_token = api_tokens_fresh$access_token,
+                              refresh_token = api_tokens_fresh$refresh_token)
+    
+    #if update_local is true, overwrite existing rayyan creds file with new tokens
+    if(update_local==T){
+      jsonlite::write_json(api_tokens_fresh, creds, auto_unbox=T)
+    }
+
+    return(api_tokens_fresh)
+}
+
+
+jsonlite::toJSON(api_tokens_fresh, flatten=T, force=T)
