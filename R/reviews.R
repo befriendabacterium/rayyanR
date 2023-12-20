@@ -153,33 +153,6 @@ get_aws_presigned_url <- function(api_tokens, id) {
 }
 
 
-#' rename_included_cols_values
-#'
-#' renames the included columns' values so they are explicitly 'Excluded' (-1), 'Maybe' (0), and 'Included' (1)
-#'
-#' @param review_results_df the dataframe with the review data from get_review_results_df() API call and tidying function
-#' rename_included_cols
-#'
-#' @keywords internal
-#'
-#' @return the R object containing the tidied dataframe
-#' 
-rename_included_cols_values <- function(review_results_df) {
-  
-  #identify included cols by number
-  included_colids<-grep('customizations_included',colnames(review_results_df))
-  
-  #coerce them to character
-  review_results_df[,included_colids]<-apply(review_results_df[,included_colids],2,as.character)
-  
-  #rename them explicitly
-  review_results_df[,included_colids][review_results_df[,included_colids]=='-1']<-'Excluded'
-  review_results_df[,included_colids][review_results_df[,included_colids]=='0']<-'Maybe'
-  review_results_df[,included_colids][review_results_df[,included_colids]=='1']<-'Included'
-  
-  return(review_results_df)
-}
-
 
 #' rename_included_cols_names
 #'
@@ -223,4 +196,60 @@ rename_included_cols_names <- function(review_info, review_results_df, rename_wi
   }
   
   return(review_results_df)
+}
+
+
+#' rename_included_cols_values
+#'
+#' renames the included columns' values so they are explicitly 'Excluded' (-1), 'Maybe' (0), and 'Included' (1)
+#'
+#' @param review_results_df the dataframe with the review data from get_review_results_df() API call and tidying function
+#' rename_included_cols
+#'
+#' @keywords internal
+#'
+#' @return the R object containing the tidied dataframe
+#' 
+rename_included_cols_values <- function(review_results_df) {
+  
+  #identify included cols by number
+  included_colids<-grep('customizations_included',colnames(review_results_df))
+  
+  #coerce them to character
+  review_results_df[,included_colids]<-apply(review_results_df[,included_colids],2,as.character)
+  
+  #rename them explicitly
+  review_results_df[,included_colids][review_results_df[,included_colids]=='-1']<-'Excluded'
+  review_results_df[,included_colids][review_results_df[,included_colids]=='0']<-'Maybe'
+  review_results_df[,included_colids][review_results_df[,included_colids]=='1']<-'Included'
+  
+  return(review_results_df)
+}
+
+
+
+#' calculate_included_consensus
+#'
+#' calculates consensus based on individual reviewer decisions
+#'
+#' @param review_results_df the dataframe with the review data from get_review_results_df() API call and tidying function
+#' rename_included_cols
+#'
+#' @keywords internal
+#'
+#' @return the R object containing the dataframe with a new column 'customizations_included_consensus' with the consensus where there is one (or 'Conflict' if not)
+#' 
+calculate_included_consensus <- function(review_results_df) {
+
+#add consensus column after the included cols, and populate with 'Conflict' by default
+review_results_df<-tibble::add_column(review_results_df,
+                                      customizations_included_consensus = 'Conflict',
+                                      .after=included_colids[length(included_colids)])
+
+#calculate consensus where there is one
+review_results_df$customizations_included_consensus[rowSums(review_results_df[,included_colids]=='Included')==length(included_colids)]<-'Included'
+review_results_df$customizations_included_consensus[rowSums(review_results_df[,included_colids]=='Maybe')==length(included_colids)]<-'Maybe'
+review_results_df$customizations_included_consensus[rowSums(review_results_df[,included_colids]=='Excluded')==length(included_colids)]<-'Excluded'
+
+return(review_results_df)
 }
