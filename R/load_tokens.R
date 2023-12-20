@@ -3,7 +3,6 @@
 #'
 #' loads API credentials from a JSON file
 #' @param creds local path to the json file containing the credentials exported from rayyan
-#' @param base_url the API base URL (defaults to production)
 #'
 #' @return an api environment to be passed to the other functions
 load_tokens <- function(
@@ -18,7 +17,6 @@ load_tokens <- function(
 #'
 #' imports the API tokens from function arguments
 #' @param creds local path to the json file containing the credentials exported from rayyan
-#' @param base_url the API base URL (defaults to production)
 #'
 #' @return an api environment to be passed to the other functions
 login_tokens <- function(
@@ -37,7 +35,6 @@ login_tokens <- function(
 #' refreshes the API tokens from function arguments
 #' @param creds local path to the json file containing the credentials exported from rayyan
 #' @param update_local option to overwrite existing json file containing the credentials with the new, updated credentials. Defaults to TRUE.
-#' @param base_url the API base URL (defaults to production)
 #'
 #' @return an api environment to be passed to the other functions
 refresh_tokens <- function(
