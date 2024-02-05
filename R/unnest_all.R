@@ -21,7 +21,7 @@ unnest_all <- function(df) {
   for (list_column in list_columns) {
     df <-
       df %>%
-      tidyr::unnest_wider(list_column, names_sep = "_")
+      tidyr::unnest_wider(list_column, names_sep = "_", names_repair = 'universal')
   }
   unnest_all(df)
 }
