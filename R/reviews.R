@@ -167,24 +167,31 @@ get_aws_presigned_url <- function(api_tokens, id) {
 #'
 #' @return the R object containing the tidied dataframe
 #' 
-rename_included_cols_names <- function(review_info, review_results_df, rename_with='name') {
+rename_included_cols_names <- function(review_results_df, review_info, rename_with='name') {
   
   if (!rename_with%in%c('name','email')){stop('\'rename with\' must be either \'name\' or \'email\'')}
   
+  #parse dfs of owners, reviewers and viewers (all team members)
   owner_df<-data.frame(t(sapply(review_info$owner,c)))
-  allcollaborators_df<-data.frame(t(sapply(review_info$all_collaborators,c)))
-  reviewer_info_df<-rbind(owner_df,allcollaborators_df)
+  reviewers_df<-data.frame(t(sapply(review_info$reviewers,c)))
+  viewers_df<-data.frame(t(sapply(review_info$viewers, c)))
+  #add cols to specify roles
+  owner_df<-tibble::add_column(owner_df, .after='id', role='owner')
+  reviewers_df<-tibble::add_column(reviewers_df, .after='id', role='reviewer')
+  viewers_df<-tibble::add_column(viewers_df, .after='id', role='viewer')
+  #bind into one df
+  member_info_df<-rbind(owner_df,reviewers_df,viewers_df)
   
   #identify included cols by number
   included_colids<-grep('customizations_included',colnames(review_results_df))
-  reviewer_nos<-as.character(readr::parse_number(colnames(review_results_df)[included_colids]))
+  member_nos<-as.character(readr::parse_number(colnames(review_results_df)[included_colids]))
   
   if(rename_with=='name'){
     #install.packages('stringi')
-    reviewer_to_s<-gsub(" ", "",reviewer_info_df$to_s[match(reviewer_nos,reviewer_info_df$id)])
+    member_to_s<-gsub(" ", "",member_info_df$to_s[match(member_nos,member_info_df$id)])
     colnames(review_results_df)[included_colids]<-stringr::str_replace_all(string=colnames(review_results_df)[included_colids],
-                                                                           pattern=reviewer_nos,
-                                                                           replacement=reviewer_to_s)
+                                                                           pattern=member_nos,
+                                                                           replacement=member_to_s)
   }
   
   if(rename_with=='email'){
@@ -239,7 +246,13 @@ rename_included_cols_values <- function(review_results_df) {
 #'
 #' @return the R object containing the dataframe with a new column 'customizations_included_consensus' with the consensus where there is one (or 'Conflict' if not)
 #' 
-calculate_included_consensus <- function(review_results_df) {
+calculate_included_consensus <- function(review_results_df, review_info) {
+
+#identify included cols by number
+included_colids<-grep('customizations_included',colnames(review_results_df))
+
+#subset out only reviewer cols for consensus (i.e. ignore other members' decisions)
+review_results_df
 
 #add consensus column after the included cols, and populate with 'Conflict' by default
 review_results_df<-tibble::add_column(review_results_df,
@@ -247,9 +260,50 @@ review_results_df<-tibble::add_column(review_results_df,
                                       .after=included_colids[length(included_colids)])
 
 #calculate consensus where there is one
-review_results_df$customizations_included_consensus[rowSums(review_results_df[,included_colids]=='Included')==length(included_colids)]<-'Included'
-review_results_df$customizations_included_consensus[rowSums(review_results_df[,included_colids]=='Maybe')==length(included_colids)]<-'Maybe'
-review_results_df$customizations_included_consensus[rowSums(review_results_df[,included_colids]=='Excluded')==length(included_colids)]<-'Excluded'
+review_results_df$customizations_included_consensus[apply(review_results_df[,included_colids],1,function(x){all(x=='Included', na.rm = T)})]<-'Included'
+review_results_df$customizations_included_consensus[apply(review_results_df[,included_colids],1,function(x){all(x=='Maybe', na.rm = T)})]<-'Maybe'
+review_results_df$customizations_included_consensus[apply(review_results_df[,included_colids],1,function(x){all(x=='Excluded', na.rm = T)})]<-'Excluded'
 
 return(review_results_df)
+}
+
+
+
+#' get_review_results_df
+#'
+#' gets a review from the rayyan API and outputs the results an R object
+#'
+#' @param api_tokens the api environment from load_tokens_and_env()
+#' or login_tokens_and_env()
+#' @param id the rayyan ID of the review to get - this can be obtained via
+#' get_reviews
+#'
+#' @keywords internal
+#'
+#' @return the R object containing the result of the API call
+get_review_results_df_tidied <- function(api_tokens, id) {
+  
+  #GET 
+  body<-get_review_results_raw(api_tokens, id)
+  #parse json body (list format) to data.frame with nested lists
+  review_results_df<-data.frame(t(sapply(body$data,c)))
+  #unlist the 2nd level list of keyphrases, then apply paste on the resulting 1st level list to paste together (after uncapitalising) into one ;-separated string
+  review_results_df$keyphrases_arr<-lapply(lapply(review_results_df$keyphrases_arr,unlist),function(x){paste(tolower(x),collapse='; ')})
+  #unlist the 2nd level list of authors, then apply paste on the resulting 1st level list to paste together into one ;-separated string
+  review_results_df$authors<-lapply(lapply(review_results_df$authors,unlist),function(x){paste(x,collapse='; ')})
+  #unnest all the list columns
+  review_results_df<-unnest_all(review_results_df)
+  #remove redundant _1's (for unnested columns)
+  colnames(review_results_df)<-gsub("_1", "", colnames(review_results_df))
+  # #rename 'included' as 'decision' because its more intuitive
+  #reviews_results_df<-dplyr::rename(reviews_results_df,decision=included)
+  
+  review_info<-get_review_info_raw(api_tokens, id)
+  review_results_df<-rename_included_cols_names(review_results_df = review_results_df, review_info=review_info, rename_with = 'name')
+  review_results_df<-rename_included_cols_values(review_results_df = review_results_df)
+  #if one reviewer is NA, remove
+  
+  review_results_df<-calculate_included_consensus(review_results_df = review_results_df)
+  
+  return(review_results_df)
 }
