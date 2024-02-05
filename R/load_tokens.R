@@ -64,6 +64,3 @@ refresh_tokens <- function(
 
     return(api_tokens_fresh)
 }
-
-
-jsonlite::toJSON(api_tokens_fresh, flatten=T, force=T)
