@@ -264,6 +264,9 @@ review_results_df$customizations_included_consensus[apply(review_results_df[,inc
 review_results_df$customizations_included_consensus[apply(review_results_df[,included_colids],1,function(x){all(x=='Maybe', na.rm = T)})]<-'Maybe'
 review_results_df$customizations_included_consensus[apply(review_results_df[,included_colids],1,function(x){all(x=='Excluded', na.rm = T)})]<-'Excluded'
 
+#coerce to factor
+review_results_df$customizations_included_consensus<-as.factor(review_results_df$customizations_included_consensus)
+
 return(review_results_df)
 }
 
