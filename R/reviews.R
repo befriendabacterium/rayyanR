@@ -174,11 +174,15 @@ rename_included_cols_names <- function(review_results_df, review_info, rename_wi
   #parse dfs of owners, reviewers and viewers (all team members)
   owner_df<-data.frame(t(sapply(review_info$owner,c)))
   reviewers_df<-data.frame(t(sapply(review_info$reviewers,c)))
+  collaborators_df<-data.frame(t(sapply(review_info$collaborators,c)))
   viewers_df<-data.frame(t(sapply(review_info$viewers, c)))
-  #add cols to specify roles
-  owner_df<-tibble::add_column(owner_df, .after='id', role='owner')
-  reviewers_df<-tibble::add_column(reviewers_df, .after='id', role='reviewer')
-  viewers_df<-tibble::add_column(viewers_df, .after='id', role='viewer')
+  
+  #where the dataframe has entries, add cols to specify roles
+  if(ncol(owner_df)!=0){owner_df<-tibble::add_column(owner_df, .after='id', role='owner')}
+  if(ncol(reviewers_df)!=0){reviewers_df<-tibble::add_column(reviewers_df, .after='id', role='reviewer')}
+  if(ncol(collaborators_df)!=0){collaborators_df<-tibble::add_column(collaborators_df, .after='id', role='viewer')}
+  if(ncol(viewers_df)!=0){viewers_df<-tibble::add_column(viewers_df, .after='id', role='viewer')}
+  
   #bind into one df
   member_info_df<-rbind(owner_df,reviewers_df,viewers_df)
   
