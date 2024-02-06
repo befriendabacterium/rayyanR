@@ -17,3 +17,6 @@ get_user_info <- function(api_env) {
     body$request_token <- NULL
     return(body)
 }
+
+# run at end to update documentation
+# devtools::document()

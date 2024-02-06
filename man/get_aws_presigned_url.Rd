@@ -4,10 +4,10 @@
 \alias{get_aws_presigned_url}
 \title{get_aws_presigned_url}
 \usage{
-get_aws_presigned_url(api_env, id)
+get_aws_presigned_url(api_tokens, id)
 }
 \arguments{
-\item{api_env}{the api environment from load_tokens_and_env()
+\item{api_tokens}{the api environment from load_tokens_and_env()
 or login_tokens_and_env()}
 
 \item{id}{the rayyan ID of the review to get - this can be obtained via

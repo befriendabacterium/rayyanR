@@ -4,10 +4,10 @@
 \alias{get_reviews}
 \title{get_reviews}
 \usage{
-get_reviews(api_env)
+get_reviews(api_tokens)
 }
 \arguments{
-\item{api_env}{the api environment from load_tokens_and_env()
+\item{api_tokens}{the api environment from load_tokens_and_env()
 or login_tokens_and_env()}
 }
 \value{

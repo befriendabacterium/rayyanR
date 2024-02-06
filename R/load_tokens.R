@@ -64,3 +64,6 @@ refresh_tokens <- function(
 
     return(api_tokens_fresh)
 }
+
+# run at end to update documentation
+# devtools::document()

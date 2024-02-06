@@ -25,3 +25,6 @@ unnest_all <- function(df) {
   }
   unnest_all(df)
 }
+
+# run at end to update documentation
+# devtools::document()
