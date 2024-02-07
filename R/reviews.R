@@ -227,7 +227,7 @@ rename_included_cols_values <- function(review_results_df) {
   included_colids<-grep('customizations_included',colnames(review_results_df))
   
   #coerce them to character
-  review_results_df[,included_colids]<-apply(review_results_df[,included_colids],2,as.character)
+  review_results_df[,included_colids]<-lapply(review_results_df[,included_colids],as.character)
   
   #rename them explicitly
   review_results_df[,included_colids][review_results_df[,included_colids]=='-1']<-'Excluded'
