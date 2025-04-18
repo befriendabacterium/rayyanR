@@ -10,3 +10,6 @@ test/.Rproj.user/5CD7621B/sources/prop/INDEX
 test/.Rproj.user/shared/notebooks/patch-chunk-names
 test/rayyan_tokens.json
 .Rproj.user
+rayyan_tokens.json
+R/.DS_Store
+.DS_Store
