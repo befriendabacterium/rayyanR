@@ -255,13 +255,18 @@ calculate_included_consensus <- function(review_results_df, review_info) {
 #identify included cols by number
 included_colids<-grep('customizations_included',colnames(review_results_df))
 
-#subset out only reviewer cols for consensus (i.e. ignore other members' decisions)
-review_results_df
-
 #add consensus column after the included cols, and populate with 'Conflict' by default
 review_results_df<-tibble::add_column(review_results_df,
                                       customizations_included_consensus = 'Conflict',
                                       .after=included_colids[length(included_colids)])
+
+#coerce them to character
+review_results_df[,included_colids]<-lapply(review_results_df[,included_colids],as.character)
+
+#rename individual reviewer decisions with human-readable decisions
+review_results_df[,included_colids][review_results_df[,included_colids]=='-1']<-'Excluded'
+review_results_df[,included_colids][review_results_df[,included_colids]=='0']<-'Maybe'
+review_results_df[,included_colids][review_results_df[,included_colids]=='1']<-'Included'
 
 #calculate consensus where there is one
 review_results_df$customizations_included_consensus[apply(review_results_df[,included_colids],1,function(x){all(x=='Included', na.rm = T)})]<-'Included'
