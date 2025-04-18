@@ -1,11 +1,19 @@
 library(dplyr)
+sapply(list.files('./R',full.names = T,  ignore.case=TRUE),source,.GlobalEnv)
 
-api_tokens<-load_tokens(creds = 'test/rayyan_tokens.json')
+source('R/load_tokens.R')
+source('R/reviews.R')
+source('R/reviews.R')
+
+api_tokens<-load_tokens(creds = 'rayyan_tokens.json')
 
 allreviews_info<-get_reviews_raw(api_tokens)
 allreviews_info
 
-id <- '874815'
+id <- '979908'
+
+
+get_inclusion_counts(api_tokens=api_tokens ,id='979908')
 
 #get_reviews_raw(api_tokens)
 review_info<-get_review_info_raw(api_tokens, id)

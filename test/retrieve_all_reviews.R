@@ -20,6 +20,7 @@ resp<-httr2::req_perform(req)
 #get json on user_info
 reviews<-resp_body_json(resp)
 
+reviews<-resp_body_json(resp)
 
 # DONT RUN PAST HERE ------------------------------------------------------
 
