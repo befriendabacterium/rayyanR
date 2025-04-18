@@ -258,6 +258,7 @@ included_colids<-grep('customizations_included',colnames(review_results_df))
 #add consensus column after the included cols, and populate with 'Conflict' by default
 review_results_df<-tibble::add_column(review_results_df,
                                       customizations_included_consensus = 'conflict',
+                                      .after=included_colids[length(included_colids)])
 
 #coerce them to character
 review_results_df[,included_colids]<-lapply(review_results_df[,included_colids],as.character)
