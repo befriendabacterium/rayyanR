@@ -90,10 +90,9 @@ get_review_info_raw <- function(api_tokens, id) {
 #' @keywords internal
 #'
 #' @return the R object containing the result of the API call
-get_inclusion_counts <- function(api_tokens, id) {
+get_inclusion_counts <- function(api_tokens, review_id) {
   base_url<-"https://rayyan.ai"
   request_url<-"/api/v1/reviews/"
-  review_id<-"164320"
   function_url<-"/inclusion_counts"
   url <- paste0(base_url,request_url,review_id,function_url)
   req <- httr2::request(url)
