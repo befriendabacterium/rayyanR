@@ -306,8 +306,9 @@ get_review_results_df_tidied <- function(api_tokens, id) {
   #reviews_results_df<-dplyr::rename(reviews_results_df,decision=included)
   
   review_info<-get_review_info_raw(api_tokens, id)
-  review_results_df<-rename_included_cols_names(review_results_df = review_results_df, review_info=review_info, rename_with = 'name')
-  review_results_df<-rename_included_cols_values(review_results_df = review_results_df)
+  #NB DISABLED RENAMING AS NOT WORKING - CHECK RENAME_INCLUDED_COLS_NAMES/VALUES() FUNCTIONS
+  #review_results_df<-rename_included_cols_names(review_results_df = review_results_df, review_info=review_info, rename_with = 'name')
+  #review_results_df<-rename_included_cols_values(review_results_df = review_results_df)
   #if one reviewer is NA, remove
   
   review_results_df<-calculate_included_consensus(review_results_df = review_results_df)
