@@ -31,13 +31,13 @@ get_reviews_raw <- function(api_tokens) {
 get_reviews <- function(api_tokens) {
     revs <- get_reviews_raw(api_tokens)
     reviews <- data.frame(
-        id = integer(),
+        review_id = integer(),
         title = character(),
         owner = character()
     )
     for (rev in revs$owned_reviews){
         new_row <- data.frame(
-            id = rev$rayyan_id,
+            review_id = rev$rayyan_id,
             title = rev$title,
             owner = rev$owner$to_s
         )
@@ -46,7 +46,7 @@ get_reviews <- function(api_tokens) {
 
     for (rev in revs$collab_reviews){
         new_row <- data.frame(
-            id = rev$rayyan_id,
+            review_id = rev$rayyan_id,
             title = rev$title,
             owner = rev$owner$to_s
         )
@@ -61,14 +61,14 @@ get_reviews <- function(api_tokens) {
 #'
 #' @param api_tokens the api environment from load_tokens_and_env()
 #' or login_tokens_and_env()
-#' @param id the rayyan ID of the review to get - this can be obtained via
+#' @param review_id the rayyan ID of the review to get - this can be obtained via
 #' get_reviews
 #'
 #' @keywords internal
 #'
 #' @return the R object containing the result of the API call
-get_review_info_raw <- function(api_tokens, id) {
-    reviews_route <- paste0("/api/v1/reviews/", id)
+get_review_info_raw <- function(api_tokens, review_id) {
+    reviews_route <- paste0("/api/v1/reviews/", review_id)
     url <- paste0("https://rayyan.ai",  reviews_route)
     req <- httr2::request(url)
     req <- httr2::req_auth_bearer_token(req, api_tokens$access_token)
@@ -83,14 +83,14 @@ get_review_info_raw <- function(api_tokens, id) {
 #'
 #' @param api_tokens the api environment from load_tokens_and_env()
 #' or login_tokens_and_env()
-#' @param id the rayyan ID of the review to get - this can be obtained via
+#' @param review_id the rayyan ID of the review to get - this can be obtained via
 #' get_reviews
 #'
 #' @keywords internal
 #'
 #' @return the R object containing the result of the API call
-get_review_results_raw <- function(api_tokens, id) {
-    reviews_route <- paste0("/api/v1/reviews/", id, "/results")
+get_review_results_raw <- function(api_tokens, review_id) {
+    reviews_route <- paste0("/api/v1/reviews/", review_id, "/results")
     url <- paste0("https://rayyan.ai",  reviews_route)
     req <- httr2::request(url)
     req <- httr2::req_auth_bearer_token(req, api_tokens$access_token)
@@ -105,14 +105,14 @@ get_review_results_raw <- function(api_tokens, id) {
 #'
 #' @param api_tokens the api environment from load_tokens_and_env()
 #' or login_tokens_and_env()
-#' @param id the rayyan ID of the review to get - this can be obtained via
+#' @param review_id the rayyan ID of the review to get - this can be obtained via
 #' get_reviews
 #'
 #' @keywords internal
 #'
 #' @return the R object containing the result of the API call
-get_review_results_df <- function(api_tokens, id) {
-  body<-get_review_results_raw(api_tokens, id)
+get_review_results_df <- function(api_tokens, review_id) {
+  body<-get_review_results_raw(api_tokens, review_id)
   #parse json body (list format) to data.frame with nested lists
   review_results_df<-data.frame(t(sapply(body$data,c)))
   #unlist the 2nd level list of keyphrases, then apply paste on the resulting 1st level list to paste together (after uncapitalising) into one ;-separated string
@@ -136,14 +136,14 @@ get_review_results_df <- function(api_tokens, id) {
 #'
 #' @param api_tokens the api environment from load_tokens_and_env()
 #' or login_tokens_and_env()
-#' @param id the rayyan ID of the review to get - this can be obtained via
+#' @param review_id the rayyan ID of the review to get - this can be obtained via
 #' get_reviews
 #'
 #' @keywords internal
 #'
 #' @return the R object containing the result of the API call
-get_aws_presigned_url <- function(api_tokens, id) {
-    reviews_route <- paste0("/api/v1/reviews/", id, "/searches/new")
+get_aws_presigned_url <- function(api_tokens, review_id) {
+    reviews_route <- paste0("/api/v1/reviews/", review_id, "/searches/new")
     url <- paste0("https://rayyan.ai",  reviews_route)
     req <- httr2::request(url)
     req <- httr2::req_auth_bearer_token(req, api_tokens$access_token)
@@ -287,16 +287,16 @@ return(review_results_df)
 #'
 #' @param api_tokens the api environment from load_tokens_and_env()
 #' or login_tokens_and_env()
-#' @param id the rayyan ID of the review to get - this can be obtained via
+#' @param review_id the rayyan ID of the review to get - this can be obtained via
 #' get_reviews
 #'
 #' @keywords internal
 #'
 #' @return the R object containing the result of the API call
-get_review_results_df_tidied <- function(api_tokens, id) {
+get_review_results_df_tidied <- function(api_tokens, review_id) {
   
   #GET 
-  body<-get_review_results_raw(api_tokens, id)
+  body<-get_review_results_raw(api_tokens, review_id)
   #parse json body (list format) to data.frame with nested lists
   review_results_df<-data.frame(t(sapply(body$data,c)))
   #unlist the 2nd level list of keyphrases, then apply paste on the resulting 1st level list to paste together (after uncapitalising) into one ;-separated string
@@ -310,7 +310,7 @@ get_review_results_df_tidied <- function(api_tokens, id) {
   # #rename 'included' as 'decision' because its more intuitive
   #reviews_results_df<-dplyr::rename(reviews_results_df,decision=included)
   
-  review_info<-get_review_info_raw(api_tokens, id)
+  review_info<-get_review_info_raw(api_tokens, review_id)
   #NB DISABLED RENAMING AS NOT WORKING - CHECK RENAME_INCLUDED_COLS_NAMES/VALUES() FUNCTIONS
   #review_results_df<-rename_included_cols_names(review_results_df = review_results_df, review_info=review_info, rename_with = 'name')
   #review_results_df<-rename_included_cols_values(review_results_df = review_results_df)
