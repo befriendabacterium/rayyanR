@@ -70,11 +70,10 @@ colfinder<-paste('customizations_labels_',nofulltext_colstring, sep='')
 nofulltext_columns<-match(colfinder,colnames(S3.2_sought_reports))
 
 #dataframe of records for which full text was not retrieved
-
 ifelse (is.na(nofulltext_columns),
   #if there is not a 'no full text' column (i.e. nofulltext_columns == NA) then make empty dataframe
   S3.3_notretrieved_reports<-data.frame(author=character()),
-  #if there is a 'no full text' column then subset out rows where no full text available (==1)
+  #else if there is a 'no full text' column then subset out rows where no full text available (==1)
   S3.3_notretrieved_reports<-S3.2_sought_reports[which(S3.2_sought_reports[,nofulltext_columns]==1),])
 
 #number of not retrieved
@@ -83,7 +82,13 @@ S3.3_notretrieved_reports_n
   
 ## 4.2: REPORTS ASSESSED FOR ELIGIBILITY ------------------------------------------------------
   
-S4.2_assessed_reports<-S3.2_sought_reports[which(is.na(S3.2_sought_reports[,nofulltext_columns])),]
+#dataframe of records for which full text was not retrieved
+ifelse (is.na(nofulltext_columns),
+        #if there is not a 'no full text' column (i.e. nofulltext_columns == NA) then assessed reports equals all sought reports
+        S4.2_assessed_reports<-S3.2_sought_reports,
+        #else if there is a 'no full text' column then subset out rows where no full text available (==1)
+        S4.2_assessed_reports<-S3.2_sought_reports[which(is.na(S3.2_sought_reports[,nofulltext_columns])),])
+
 S4.2_assessed_reports_n<-nrow(S4.2_assessed_reports)
 S4.2_assessed_reports_n
   
