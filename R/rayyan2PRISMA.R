@@ -103,10 +103,18 @@ exclusionreasons_colstrings<-stringr::str_replace_all(exclusionreasons_reports,'
   
 #make a 'column finder' vector by appending the column prefix
 colfinder<-paste('customizations_labels_',exclusionreasons_colstrings, sep='')
-  
+
+missingcols<-colfinder[is.na(exclusion_reason_columns)]
+
+#if there are missing columns, add them
+if(length(missingcols)!=0){
+#add missing cols with zero values
+S4.3_excluded_reports[,missingcols]<-0
+}
+
 #identify columns holding the exclusion reasons
 exclusion_reason_columns<-match(colfinder,colnames(S4.3_excluded_reports))
-  
+
 #tally up the reasons for exclusion
 exclusion_reasons_tally<-colSums(S4.3_excluded_reports[,exclusion_reason_columns], na.rm=T)
   
