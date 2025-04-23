@@ -97,25 +97,41 @@ S4.2_assessed_reports_n
 S4.3_excluded_reports<-S4.2_assessed_reports[S4.2_assessed_reports$customizations_included_consensus=='excluded',]
 S4.3_excluded_reports_n<-nrow(S4.3_excluded_reports)
 S4.3_excluded_reports_n
-  
+
 #reformat way Rayyan has in column names
 exclusionreasons_colstrings<-stringr::str_replace_all(exclusionreasons_reports,' |/','.')
+
+exclusionreasons_colstrings
+
+for (c in 1:length(exclusionreasons_colstrings)){
   
+  #find matching columns
+  matchingcols<-
+    grep(exclusionreasons_colstrings[c],
+         colnames(S4.3_excluded_reports))
+  
+  #if no matching columns...
+  if(length(matchingcols)==0){
+  #add the column for that exclusion reason to the dataframe, filled with zeros 
+  S4.3_excluded_reports[,paste('customizations_labels_',exclusionreasons_colstrings[c], sep='')]<-0
+  }
+  
+  #if more than one matching columns (due to weird Rayyan behaviour that adds a reviewer ID for second reviewer in front of label if they labelled it such as well?)
+  if(length(matchingcols)>1){
+    
+    #coalesce the columns into a single, temporary vector
+    coalesced<-do.call(coalesce,S4.3_excluded_reports[,matchingcols])
+    #delete both original columns to avoid confusion
+    S4.3_excluded_reports[,matchingcols]<-NULL
+    #replace with new column with right name
+    S4.3_excluded_reports[,paste('customizations_labels_',exclusionreasons_colstrings[c], sep='')]<-coalesced
+  }
+}
+
 #make a 'column finder' vector by appending the column prefix
 colfinder<-paste('customizations_labels_',exclusionreasons_colstrings, sep='')
 
 #identify columns holding the exclusion reasons
-exclusion_reason_columns<-match(colfinder,colnames(S4.3_excluded_reports))
-
-missingcols<-colfinder[is.na(exclusion_reason_columns)]
-
-#if there are missing columns, add them
-if(length(missingcols)!=0){
-#add missing cols with zero values
-S4.3_excluded_reports[,missingcols]<-0
-}
-
-#reidentify columns holding the exclusion reasons
 exclusion_reason_columns<-match(colfinder,colnames(S4.3_excluded_reports))
 
 #tally up the reasons for exclusion
@@ -125,7 +141,6 @@ exclusion_reasons_tally<-colSums(S4.3_excluded_reports[,exclusion_reason_columns
 names(exclusion_reasons_tally)<-exclusionreasons_reports
   
 #check have exclusion reasons for all articles
-sum(exclusion_reasons_tally)==S4.3_excluded_reports_n
   
 #format in correct way for PRISMA
 S4.3_exclusionreasons_reports_n<-paste(paste(names(exclusion_reasons_tally), ', ', exclusion_reasons_tally, ';', sep=''), collapse=' ')
