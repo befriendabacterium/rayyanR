@@ -20,7 +20,7 @@ S1.2_database_results<-dplyr::bind_rows(identification_databases)
 S1.2_database_results_n<-nrow(S1.2_database_results)
   
 #paste together database names and nrows to get the string for the box
-S1.2_database_specific_results_n<-paste(paste(names(mainsearches_individual_databases),', ',sapply(mainsearches_individual_databases, nrow),';', sep=''), collapse=' ')
+S1.2_database_specific_results_n<-paste(paste(names(identification_databases),', ',sapply(identification_databases, nrow),';', sep=''), collapse=' ')
 S1.2_database_specific_results_n
   
 ## 1.3: RECORDS FROM DATABASES AND REGISTERS REMOVED BEFORE SCREENING --------------
