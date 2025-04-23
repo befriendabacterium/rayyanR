@@ -6,7 +6,7 @@ rayyan2PRISMA2020<-function(identification_databases,
                             exclusionreasons_reports,
                             included_studies_n
                             ){
-  
+
 # CALCULATE NUMBERS FOR PRISMA ------------------------------------------------------------
   
 ## 1.1: PREVIOUS STUDIES -------------------------------------------------------
@@ -104,6 +104,9 @@ exclusionreasons_colstrings<-stringr::str_replace_all(exclusionreasons_reports,'
 #make a 'column finder' vector by appending the column prefix
 colfinder<-paste('customizations_labels_',exclusionreasons_colstrings, sep='')
 
+#identify columns holding the exclusion reasons
+exclusion_reason_columns<-match(colfinder,colnames(S4.3_excluded_reports))
+
 missingcols<-colfinder[is.na(exclusion_reason_columns)]
 
 #if there are missing columns, add them
@@ -112,12 +115,12 @@ if(length(missingcols)!=0){
 S4.3_excluded_reports[,missingcols]<-0
 }
 
-#identify columns holding the exclusion reasons
+#reidentify columns holding the exclusion reasons
 exclusion_reason_columns<-match(colfinder,colnames(S4.3_excluded_reports))
 
 #tally up the reasons for exclusion
 exclusion_reasons_tally<-colSums(S4.3_excluded_reports[,exclusion_reason_columns], na.rm=T)
-  
+
 #make names human readable again
 names(exclusion_reasons_tally)<-exclusionreasons_reports
   
