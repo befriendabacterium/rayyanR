@@ -150,7 +150,9 @@ S4.3_exclusionreasons_reports_n<-paste(paste(names(exclusion_reasons_tally), ', 
 S5.2_included_reports<-S4.2_assessed_reports[S4.2_assessed_reports$customizations_included_consensus=='included',]
 S5.2_included_reports_n<-nrow(S5.2_included_reports)
 S5.2_included_reports_n
-
+  
+S5.2_included_studies_n<-included_studies_n
+  
 # FILL OUT PRISMA DATAFRAME: ASSESSED/EXCLUDED RECORDS FROM DATABASES AND REGISTERS ------------------------------------------------------
 
 csvFile <- system.file("extdata", "PRISMA.csv", package = "PRISMA2020")
