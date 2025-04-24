@@ -42,7 +42,7 @@ S2.2_records_screened_n<-nrow(S2.2_records_screened)
 (S1.2_database_results_n-S1.3_duplicates_n)==S2.2_records_screened_n
   
 ## 2.3: ABSTRACT SCREENING: EXCLUDED RECORDS RFROM DATABASES AND REGISTERS ------------------------------------------------------
-  
+
 S2.3_records_excluded<-S2.2_records_screened[S2.2_records_screened$customizations_included_consensus=='excluded',]
 S2.3_records_excluded_n<-nrow(S2.3_records_excluded)
   
@@ -93,7 +93,7 @@ S4.2_assessed_reports_n<-nrow(S4.2_assessed_reports)
 S4.2_assessed_reports_n
   
 ## 4.3: REPORTS EXCLUDED ------------------------------------------------------
-  
+
 S4.3_excluded_reports<-S4.2_assessed_reports[S4.2_assessed_reports$customizations_included_consensus=='excluded',]
 S4.3_excluded_reports_n<-nrow(S4.3_excluded_reports)
 S4.3_excluded_reports_n
@@ -117,9 +117,11 @@ for (c in 1:length(exclusionreasons_colstrings)){
   #if one matching column...
   if(length(matchingcols)==1){
     #make new column with right name, duplicated from old one with wrong name
-    S4.3_excluded_reports[,paste('customizations_labels_',exclusionreasons_colstrings[c], sep='')]<-S4.3_excluded_reports[,matchingcols]
+    replacement<-S4.3_excluded_reports[,matchingcols]
     #delete original column to avoid confusion
     S4.3_excluded_reports[,matchingcols]<-NULL
+    #replace with new column with right name
+    S4.3_excluded_reports[,paste('customizations_labels_',exclusionreasons_colstrings[c], sep='')]<-replacement
   }
   
   #if more than one matching columns (due to weird Rayyan behaviour that adds a reviewer ID for second reviewer in front of label if they labelled it such as well?)
@@ -218,6 +220,3 @@ PRISMAdiagram<-PRISMA2020::PRISMA_flowdiagram(PRISMAdata_list, previous = F, det
 PRISMAdiagram  
   
 }
-
-
-
