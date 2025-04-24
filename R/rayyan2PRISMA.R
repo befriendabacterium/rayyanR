@@ -110,10 +110,18 @@ for (c in 1:length(exclusionreasons_colstrings)){
     grep(exclusionreasons_colstrings[c],
          colnames(S4.3_excluded_reports))
   
+  matchingcols
+  
   #if no matching columns...
   if(length(matchingcols)==0){
   #add the column for that exclusion reason to the dataframe, filled with zeros 
   S4.3_excluded_reports[,paste('customizations_labels_',exclusionreasons_colstrings[c], sep='')]<-0
+  }
+  
+  #if one matching column...
+  if(length(matchingcols)==1){
+    #set column name to one without reviewer ID, just in case it comes from second reviewer
+    colnames(S4.3_excluded_reports[,matchingcols])<-paste('customizations_labels_',exclusionreasons_colstrings[c], sep='')
   }
   
   #if more than one matching columns (due to weird Rayyan behaviour that adds a reviewer ID for second reviewer in front of label if they labelled it such as well?)
