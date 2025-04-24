@@ -101,17 +101,13 @@ S4.3_excluded_reports_n
 #reformat way Rayyan has in column names
 exclusionreasons_colstrings<-stringr::str_replace_all(exclusionreasons_reports,' |/','.')
 
-exclusionreasons_colstrings
-
 for (c in 1:length(exclusionreasons_colstrings)){
   
   #find matching columns
   matchingcols<-
     grep(exclusionreasons_colstrings[c],
          colnames(S4.3_excluded_reports))
-  
-  matchingcols
-  
+
   #if no matching columns...
   if(length(matchingcols)==0){
   #add the column for that exclusion reason to the dataframe, filled with zeros 
@@ -120,8 +116,10 @@ for (c in 1:length(exclusionreasons_colstrings)){
   
   #if one matching column...
   if(length(matchingcols)==1){
-    #set column name to one without reviewer ID, just in case it comes from second reviewer
-    colnames(S4.3_excluded_reports[,matchingcols])<-paste('customizations_labels_',exclusionreasons_colstrings[c], sep='')
+    #make new column with right name, duplicated from old one with wrong name
+    S4.3_excluded_reports[,paste('customizations_labels_',exclusionreasons_colstrings[c], sep='')]<-S4.3_excluded_reports[,matchingcols]
+    #delete original column to avoid confusion
+    S4.3_excluded_reports[,matchingcols]<-NULL
   }
   
   #if more than one matching columns (due to weird Rayyan behaviour that adds a reviewer ID for second reviewer in front of label if they labelled it such as well?)
