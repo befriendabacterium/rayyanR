@@ -1,0 +1,146 @@
+TY  - JOUR
+TI  - Biotic resistance shapes the influence of propagule pressure on invasion success in bacterial communities
+AU  - Jones, Matt L.
+AU  - Ramoneda, Josep
+AU  - Rivett, Damian W.
+AU  - Bell, Thomas
+T2  - Ecology
+AB  - The number of invaders and the timing of invasion are recognized as key determinants of successful invasions. Despite the recognized importance of “propagule pressure,” invasion ecology has largely focused on how characteristics of the native community confer invasion resistance. We simultaneously manipulated community composition and invader propagule pressure in microcosm communities of freshwater bacteria. We show that high propagule pressures can be necessary to establish an invader population, but that the influence of propagule pressure depends on the composition of the resident species. In particular, the number of individuals invading was most important to invasion success when one of the species in a resident community is a strong competitor against other species. By contrast, the timing of invasion was most important when communities had lower growth rates. The results suggest that the importance of propagule pressure varies both between communities and within the same community over time, and therefore have implications for the way we understand the relationship between biotic resistance and invasion success.
+DA  - 2017///
+PY  - 2017
+DO  - 10.1002/ecy.1852
+DP  - Wiley Online Library
+VL  - 98
+IS  - 7
+SP  - 1743
+EP  - 1749
+LA  - en
+SN  - 1939-9170
+UR  - https://onlinelibrary.wiley.com/doi/abs/10.1002/ecy.1852
+Y2  - 2023/01/27/11:32:51
+L1  - https://onlinelibrary.wiley.com/doi/pdfdirect/10.1002/ecy.1852
+KW  - bacteria
+KW  - invasion
+KW  - biotic resistance
+KW  - community assembly
+KW  - timing
+KW  - priority effect
+KW  - propagule pressure
+ER  - 
+
+TY  - JOUR
+TI  - Relationships between community composition, productivity and invasion resistance in semi-natural bacterial microcosms
+AU  - Jones, Matt Lloyd
+AU  - Rivett, Damian William
+AU  - Pascual-García, Alberto
+AU  - Bell, Thomas
+T2  - eLife
+AB  - Common garden experiments that inoculate a standardised growth medium with synthetic microbial communities (i.e. constructed from individual isolates or using dilution cultures) suggest that the ability of the community to resist invasions by additional microbial taxa can be predicted by the overall community productivity (broadly defined as cumulative cell density and/or growth rate). However, to the best of our knowledge, no common garden study has yet investigated the relationship between microbial community composition and invasion resistance in microcosms whose compositional differences reflect natural, rather than laboratory-designed, variation. We conducted experimental invasions of two bacterial strains (Pseudomonas fluorescens and Pseudomonas putida) into laboratory microcosms inoculated with 680 different mixtures of bacteria derived from naturally occurring microbial communities collected in the field. Using 16S rRNA gene amplicon sequencing to characterise microcosm starting composition, and highthroughput assays of community phenotypes including productivity and invader survival, we determined that productivity is a key predictor of invasion resistance in natural microbial communities, substantially mediating the effect of composition on invasion resistance. The results suggest that similar general principles govern invasion in artificial and natural communities, and that factors affecting resident community productivity should be a focal point for future microbial invasion experiments.
+DA  - 2021/10/18/
+PY  - 2021
+DO  - 10.7554/eLife.71811
+DP  - DOI.org (Crossref)
+VL  - 10
+SP  - e71811
+LA  - en
+SN  - 2050-084X
+UR  - https://elifesciences.org/articles/71811
+Y2  - 2023/01/27/11:33:44
+L1  - https://elifesciences.org/articles/71811.pdf
+ER  - 
+
+TY  - JOUR
+TI  - Elevated success of multispecies bacterial invasions impacts community composition during ecological succession
+AU  - Rivett, Damian W.
+AU  - Jones, Matt L.
+AU  - Ramoneda, Josep
+AU  - Mombrikotb, Shorok B.
+AU  - Ransome, Emma
+AU  - Bell, Thomas
+T2  - Ecology Letters
+AB  - Successful microbial invasions are determined by a species’ ability to occupy a niche in the new habitat whilst resisting competitive exclusion by the resident community. Despite the recognised importance of biotic factors in determining the invasiveness of microbial communities, the success and impact of multiple concurrent invaders on the resident community has not been examined. Simultaneous invasions might have synergistic effects, for example if resident species need to exhibit divergent phenotypes to compete with the invasive populations. We used three phylogenetically diverse bacterial species to invade two compositionally distinct communities in a controlled, naturalised in vitro system. By initiating the invader introductions at different stages of succession, we could disentangle the relative importance of resident community structure, invader diversity and time pre-invasion. Our results indicate that multiple invaders increase overall invasion success, but do not alter the successional trajectory of the whole community.
+DA  - 2018///
+PY  - 2018
+DO  - 10.1111/ele.12916
+DP  - Wiley Online Library
+VL  - 21
+IS  - 4
+SP  - 516
+EP  - 524
+LA  - en
+SN  - 1461-0248
+UR  - https://onlinelibrary.wiley.com/doi/abs/10.1111/ele.12916
+Y2  - 2023/01/27/11:35:04
+L1  - https://onlinelibrary.wiley.com/doi/pdfdirect/10.1111/ele.12916
+KW  - Bacteria
+KW  - Invasion
+KW  - community assembly
+KW  - next generation sequencing
+KW  - community stability
+KW  - species sorting
+KW  - timing
+ER  - 
+
+TY  - JOUR
+TI  - Uncovering the rules of microbial community invasions
+AU  - Vila, Jean C. C.
+AU  - Jones, Matt L.
+AU  - Patel, Matishalin
+AU  - Bell, Tom
+AU  - Rosindell, James
+T2  - Nature Ecology & Evolution
+AB  - Understanding the ecological and evolutionary processes determining the outcome of biological invasions has been the subject of decades of research with most work focusing on macro-organisms. In the context of microbes, invasions remain poorly understood despite being increasingly recognized as important. To shed light on the factors affecting the success of microbial community invasions, we perform simulations using an individual-based nearly neutral model that combines ecological and evolutionary processes. Our simulations qualitatively recreate many empirical patterns and lead to a description of five general rules of invasion: (1) larger communities evolve better invaders and better defenders; (2) where invader and resident fitness difference is large, invasion success is essentially deterministic; (3) propagule pressure contributes to invasion success, if and only if, invaders and residents are competitively similar; (4) increasing the diversity of invaders has a similar effect to increasing the number of invaders; and (5) more diverse communities more successfully resist invasion.
+DA  - 2019/08//
+PY  - 2019
+DO  - 10.1038/s41559-019-0952-9
+DP  - www.nature.com
+VL  - 3
+IS  - 8
+SP  - 1162
+EP  - 1171
+J2  - Nat Ecol Evol
+LA  - en
+SN  - 2397-334X
+UR  - https://www.nature.com/articles/s41559-019-0952-9
+Y2  - 2023/01/27/11:36:40
+L1  - https://www.nature.com/articles/s41559-019-0952-9.pdf
+KW  - Microbial communities
+KW  - Microbial ecology
+KW  - Community ecology
+KW  - Evolutionary ecology
+KW  - Theoretical ecology
+ER  - 
+
+TY  - RPRT
+TI  - Review of airborne antimicrobial resistance
+AU  - Jones, Matt
+PB  - Environment Agency
+UR  - https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/1036379/Review_of_airborne_antimicrobial_resistance_-_report.pdf
+Y2  - 2023/01/27/11:36:24
+L1  - https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/1036379/Review_of_airborne_antimicrobial_resistance_-_report.pdf
+ER  - 
+
+TY  - JOUR
+TI  - Exploring the potential of using simulation games for engaging with sheep farmers about lameness recognition
+AU  - Jones, Matt L.
+AU  - Barnish, Maxwell S.
+AU  - Hughes, Robert R.
+AU  - Murray, Aimee K.
+AU  - Mansour, Omid
+AU  - Loni, Tiziana
+AU  - Vickery, Holly M.
+AU  - Evans, Myfanwy L.
+AU  - Green, Laura
+AU  - Verdezoto, Nervo
+T2  - Frontiers in Veterinary Science
+AB  - IntroductionComputer simulation games are increasingly being used in agriculture as a promising tool to study, support and influence real-life farming practices. We explored the potential of using simulation games to engage with sheep farmers on the ongoing challenge of reducing lameness. Working with UK stakeholders, we developed a game in which players are challenged with identifying all the lame sheep in a simulated flock. Here, we evaluate the game's potential to act as a tool to help assess, train and understand farmers' ability to recognize the early signs of lameness.MethodsParticipants in the UK were invited to play the game in an online study, sharing with us their in-game scores alongside information relating to their real-life farming experience, how they played the game, and feedback on the game. Mixed methods were used to analyze this information in order to evaluate the game. Quantitative analyses consisted of linear modeling to test for statistical relationships between participants' in-game recall (% of the total number of lame sheep that were marked as lame), and the additional information they provided. Qualitative analyses of participants' feedback on the game consisted of thematic analysis and a Likert Scale questionnaire to contextualize the quantitative results and identify additional insights from the study.ResultsQuantitative analyses identified no relationships between participants' (n = 63) recall scores and their real life farming experience, or the lameness signs they looked for when playing the game. The only relationship identified was a relationship between participants' recall score and time spent playing the game. Qualitative analyses identified that participants did not find the game sufficiently realistic or engaging, though several enjoyed playing it and saw potential for future development. Qualitative analyses also identified several interesting and less-expected insights about real-life lameness recognition practices that participants shared after playing the game.DiscussionSimulation games have potential as a tool in livestock husbandry education and research, but achieving the desired levels of realism and/or engagingness may be an obstacle to realizing this. Future research should explore this potential further, aided by larger budgets and closer collaboration with farmers, stockpeople, and veterinarians.
+DA  - 2023///
+PY  - 2023
+DP  - Frontiers
+VL  - 10
+SN  - 2297-1769
+UR  - https://www.frontiersin.org/articles/10.3389/fvets.2023.1079948
+Y2  - 2023/02/23/11:44:57
+L1  - https://www.frontiersin.org/articles/10.3389/fvets.2023.1079948/pdf
+ER  - 
+

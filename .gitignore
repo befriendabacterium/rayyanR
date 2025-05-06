@@ -1,0 +1,17 @@
+
+*.Rproj
+*.pper
+test/.Rproj.user/5CD7621B/rmd-outputs
+test/.Rproj.user/5CD7621B/saved_source_markers
+test/.Rproj.user/5CD7621B/sources/per/t/19BB7463
+test/.Rproj.user/5CD7621B/sources/per/t/19BB7463-contents
+test/.Rproj.user/5CD7621B/sources/prop/A14DBE81
+test/.Rproj.user/5CD7621B/sources/prop/INDEX
+test/.Rproj.user/shared/notebooks/patch-chunk-names
+test/rayyan_tokens.json
+.Rproj.user
+rayyan_tokens.json
+R/.DS_Store
+.DS_Store
+rayyanR.Rproj
+rayyanR_exampleoutput_201223.csv
