@@ -4,13 +4,13 @@
 \alias{get_review_results_raw}
 \title{get_review_results_raw}
 \usage{
-get_review_results_raw(api_tokens, id)
+get_review_results_raw(api_tokens, review_id)
 }
 \arguments{
 \item{api_tokens}{the api environment from load_tokens_and_env()
 or login_tokens_and_env()}
 
-\item{id}{the rayyan ID of the review to get - this can be obtained via
+\item{review_id}{the rayyan ID of the review to get - this can be obtained via
 get_reviews}
 }
 \value{

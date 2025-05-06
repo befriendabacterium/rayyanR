@@ -11,7 +11,7 @@ calculate_included_consensus(review_results_df, review_info)
 rename_included_cols}
 }
 \value{
-the R object containing the dataframe with a new column 'customizations_included_consensus' with the consensus where there is one (or 'Conflict' if not)
+the R object containing the dataframe with a new column 'customizations_included_consensus' with the consensus where there is one (or 'conflict' if not)
 }
 \description{
 calculates consensus based on individual reviewer decisions

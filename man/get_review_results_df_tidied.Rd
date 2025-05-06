@@ -4,17 +4,17 @@
 \alias{get_review_results_df_tidied}
 \title{get_review_results_df}
 \usage{
-get_review_results_df_tidied(api_tokens, id)
+get_review_results_df_tidied(api_tokens, review_id)
 }
 \arguments{
 \item{api_tokens}{the api environment from load_tokens_and_env()
 or login_tokens_and_env()}
 
-\item{id}{the rayyan ID of the review to get - this can be obtained via
+\item{review_id}{the rayyan ID of the review to get - this can be obtained via
 get_reviews}
 }
 \value{
-the R object containing the result of the API call
+the R object containing the result of the API call #'
 }
 \description{
 gets a review from the rayyan API and outputs the results an R object
