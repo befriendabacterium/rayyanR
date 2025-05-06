@@ -8,6 +8,8 @@
 #' @keywords internal
 #'
 #' @return the R object containing the result of the API call
+#' @export
+
 get_reviews_raw <- function(api_tokens) {
     reviews_route <- "/api/v1/reviews"
     url <- paste0("https://rayyan.ai",  reviews_route)
@@ -66,7 +68,9 @@ get_reviews <- function(api_tokens) {
 #'
 #' @keywords internal
 #'
-#' @return the R object containing the result of the API call
+#' @return the R object containing the result of the API call 
+#' @export
+
 get_review_info_raw <- function(api_tokens, review_id) {
     reviews_route <- paste0("/api/v1/reviews/", review_id)
     url <- paste0("https://rayyan.ai",  reviews_route)
@@ -89,6 +93,8 @@ get_review_info_raw <- function(api_tokens, review_id) {
 #' @keywords internal
 #'
 #' @return the R object containing the result of the API call
+#' @export
+
 get_review_results_raw <- function(api_tokens, review_id) {
     reviews_route <- paste0("/api/v1/reviews/", review_id, "/results")
     url <- paste0("https://rayyan.ai",  reviews_route)
@@ -110,7 +116,9 @@ get_review_results_raw <- function(api_tokens, review_id) {
 #'
 #' @keywords internal
 #'
-#' @return the R object containing the result of the API call
+#' @return the R object containing the result of the API call 
+#' @export
+
 get_review_results_df <- function(api_tokens, review_id) {
   body<-get_review_results_raw(api_tokens, review_id)
   #parse json body (list format) to data.frame with nested lists
@@ -141,7 +149,9 @@ get_review_results_df <- function(api_tokens, review_id) {
 #'
 #' @keywords internal
 #'
-#' @return the R object containing the result of the API call
+#' @return the R object containing the result of the API call #' 
+#' @export
+
 get_aws_presigned_url <- function(api_tokens, review_id) {
     reviews_route <- paste0("/api/v1/reviews/", review_id, "/searches/new")
     url <- paste0("https://rayyan.ai",  reviews_route)
@@ -166,7 +176,8 @@ get_aws_presigned_url <- function(api_tokens, review_id) {
 #' @keywords internal
 #'
 #' @return the R object containing the tidied dataframe
-#' 
+#' @export
+
 rename_included_cols_names <- function(review_results_df, review_info, rename_with='name') {
   
   if (!rename_with%in%c('name','email')){stop('\'rename with\' must be either \'name\' or \'email\'')}
@@ -220,7 +231,8 @@ rename_included_cols_names <- function(review_results_df, review_info, rename_wi
 #' @keywords internal
 #'
 #' @return the R object containing the tidied dataframe
-#' 
+#' @export
+
 rename_included_cols_values <- function(review_results_df) {
   
   #identify included cols by number
@@ -249,7 +261,8 @@ rename_included_cols_values <- function(review_results_df) {
 #' @keywords internal
 #'
 #' @return the R object containing the dataframe with a new column 'customizations_included_consensus' with the consensus where there is one (or 'conflict' if not)
-#' 
+#' @export
+
 calculate_included_consensus <- function(review_results_df, review_info) {
 
 #identify included cols by number
@@ -292,7 +305,9 @@ return(review_results_df)
 #'
 #' @keywords internal
 #'
-#' @return the R object containing the result of the API call
+#' @return the R object containing the result of the API call #' 
+#' @export
+
 get_review_results_df_tidied <- function(api_tokens, review_id) {
   
   #GET 
