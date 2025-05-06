@@ -9,7 +9,7 @@ Description: A package to interact with the Rayyan.ai API allowing users to down
 License: GPL (>= 3)
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
-RoxygenNote: 7.2.3
+RoxygenNote: 7.3.2
 Imports: magrittr, purrr, tidyr
 Suggests: 
     knitr,

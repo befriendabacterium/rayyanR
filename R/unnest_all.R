@@ -11,6 +11,7 @@
 #' @keywords internal
 #'
 #' @return the R object containing the unnested dataframe
+#' @export
 unnest_all <- function(df) {
   list_columns <- df %>% purrr::keep(is.list) %>% names()
   
