@@ -11,6 +11,7 @@ load_tokens(creds)
 }
 \value{
 an api environment to be passed to the other functions
+#' @export
 }
 \description{
 loads API credentials from a JSON file
