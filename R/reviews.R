@@ -307,24 +307,22 @@ get_review_results_df_tidied <- function(api_tokens, review_id) {
   review_results_df<-unnest_all(review_results_df)
   #remove redundant _1's (for unnested columns)
   colnames(review_results_df)<-gsub("_1", "", colnames(review_results_df))
-  # #rename 'included' as 'decision' because its more intuitive
-  #reviews_results_df<-dplyr::rename(reviews_results_df,decision=included)
-  #rename 'customizations' columns to a more tidy format 
-  #replace 'customizations_included_' with 'screeningdecisions_'
+  #calculate included consensus
+  review_results_df<-calculate_included_consensus(review_results_df = review_results_df)
+  
+  #Rename 'customizations' columns to a more tidy format 
+  ##replace 'customizations_included_' with 'screeningdecisions_'
   colnames(review_results_df) <- gsub("customizations_included_", "screeningdecisions_", colnames(review_results_df))
-  #replace 'customizations___EXR_' with 'exclusionreason_'
+  ##replace 'customizations___EXR_' with 'exclusionreason_'
   colnames(review_results_df) <- gsub("customizations___EXR_", "exclusionreason_", colnames(review_results_df))
-  #replace 'customizationions_labels' with 'labels_'
+  ##replace 'customizationions_labels' with 'labels_'
   colnames(review_results_df) <- gsub("customizations_labels", "labels", colnames(review_results_df))
   
-  
-  review_info<-get_review_info_raw(api_tokens, review_id)
+  #review_info<-get_review_info_raw(api_tokens, review_id)
   #NB DISABLED RENAMING AS NOT WORKING - CHECK RENAME_INCLUDED_COLS_NAMES/VALUES() FUNCTIONS
   #review_results_df<-rename_included_cols_names(review_results_df = review_results_df, review_info=review_info, rename_with = 'name')
   #review_results_df<-rename_included_cols_values(review_results_df = review_results_df)
   #if one reviewer is NA, remove
-  
-  review_results_df<-calculate_included_consensus(review_results_df = review_results_df)
   
   return(review_results_df)
 }
