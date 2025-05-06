@@ -30,6 +30,8 @@ get_reviews_raw <- function(api_tokens) {
 #' or login_tokens_and_env()
 #'
 #' @return a dataframe containing the ID, title, and owner of reviews
+#' #' @export
+
 get_reviews <- function(api_tokens) {
     revs <- get_reviews_raw(api_tokens)
     reviews <- data.frame(
@@ -149,7 +151,7 @@ get_review_results_df <- function(api_tokens, review_id) {
 #'
 #' @keywords internal
 #'
-#' @return the R object containing the result of the API call #' 
+#' @return the R object containing the result of the API call
 #' @export
 
 get_aws_presigned_url <- function(api_tokens, review_id) {
