@@ -6,6 +6,7 @@
 #' @param api_env the api envrionment from load_tokens_and_env()
 #'
 #' @return an object containing the user information from the rayyan API.
+#' @export
 get_user_info <- function(api_env) {
     #path to user
     user_info_route <- "api/v1/user_info/"
