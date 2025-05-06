@@ -5,6 +5,7 @@
 #' @param creds local path to the json file containing the credentials exported from rayyan
 #'
 #' @return an api environment to be passed to the other functions
+#' #' @export
 load_tokens <- function(
     creds
 ) {
@@ -19,6 +20,7 @@ load_tokens <- function(
 #' @param creds local path to the json file containing the credentials exported from rayyan
 #'
 #' @return an api environment to be passed to the other functions
+#' @export
 login_tokens <- function(
     access_token,
     refresh_token
