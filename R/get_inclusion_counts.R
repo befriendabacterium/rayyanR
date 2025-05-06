@@ -8,6 +8,7 @@
 #' @keywords internal
 #'
 #' @return the R object containing the result of the API call
+#' @export
 facets <- function(api_tokens,id) {
   reviews_route <- "/api/v1/reviews/"
   url <- paste0("https://rayyan.ai",  reviews_route)
@@ -29,6 +30,7 @@ facets <- function(api_tokens,id) {
 #' or login_tokens_and_env()
 #'
 #' @return a dataframe containing the ID, title, and owner of reviews
+#' @export
 get_reviews <- function(api_tokens) {
   revs <- get_reviews_raw(api_tokens)
   reviews <- data.frame(
@@ -68,6 +70,7 @@ get_reviews <- function(api_tokens) {
 #' @keywords internal
 #'
 #' @return the R object containing the result of the API call
+#' @export
 get_review_info_raw <- function(api_tokens, id) {
   reviews_route <- paste0("/api/v1/reviews/", id)
   url <- paste0("https://rayyan.ai",  reviews_route)
@@ -90,6 +93,7 @@ get_review_info_raw <- function(api_tokens, id) {
 #' @keywords internal
 #'
 #' @return the R object containing the result of the API call
+#' @export
 get_inclusion_counts <- function(api_tokens, review_id) {
   base_url<-"https://rayyan.ai"
   request_url<-"/api/v1/reviews/"
