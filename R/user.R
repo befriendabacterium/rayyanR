@@ -1,4 +1,3 @@
-
 #' get_user_info
 #'
 #' Gets the user information from rayyan
