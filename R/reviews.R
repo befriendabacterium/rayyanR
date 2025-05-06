@@ -309,6 +309,14 @@ get_review_results_df_tidied <- function(api_tokens, review_id) {
   colnames(review_results_df)<-gsub("_1", "", colnames(review_results_df))
   # #rename 'included' as 'decision' because its more intuitive
   #reviews_results_df<-dplyr::rename(reviews_results_df,decision=included)
+  #rename 'customizations' columns to a more tidy format 
+  #replace 'customizations_included_' with 'screeningdecisions_'
+  colnames(review_results_df) <- gsub("customizations_included_", "screeningdecisions_", colnames(review_results_df))
+  #replace 'customizations___EXR_' with 'exclusionreason_'
+  colnames(review_results_df) <- gsub("customizations___EXR_", "exclusionreason_", colnames(review_results_df))
+  #replace 'customizationions_labels' with 'labels_'
+  colnames(review_results_df) <- gsub("customizations_labels", "labels", colnames(review_results_df))
+  
   
   review_info<-get_review_info_raw(api_tokens, review_id)
   #NB DISABLED RENAMING AS NOT WORKING - CHECK RENAME_INCLUDED_COLS_NAMES/VALUES() FUNCTIONS
