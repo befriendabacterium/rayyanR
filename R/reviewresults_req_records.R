@@ -1,6 +1,6 @@
-#' reviewresults_req
+#' reviewresults_req_records
 #'
-#' gets a review from the rayyan API and outputs the results an R object
+#' gets a review results for records/abstracts from the rayyan API and outputs the results an R object
 #'
 #' @param api_tokens the api environment from load_tokens_and_env()
 #' or login_tokens_and_env()
@@ -11,7 +11,7 @@
 #'
 #' @return the R object containing the result of the API call
 #' @export
-reviewresults_req <- function(api_tokens, review_id) {
+reviewresults_req_records <- function(api_tokens, review_id) {
   reviews_route <- paste0("/api/v1/reviews/", review_id, "/results")
   url <- paste0("https://rayyan.ai",  reviews_route)
   req <- httr2::request(url)
