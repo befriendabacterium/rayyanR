@@ -22,7 +22,7 @@ remotes::install_github("https://github.com/befriendabacterium/rayyanR")
 The Rayyan API v1 documentation is currently only accessible via Insomia, a software that you now have to pay for. However, you can access the API documentation by:
 
 1. Downloading and installing an old version of Insomnia [here](https://github.com/Kong/insomnia/releases/tag/core%402023.5.7). Insomnia.Core-2023.5.7.exe is the one you need for Windows, Insomnia.Core-2023.5.7.dmg is the one you need for Mac.
-2. Cloning the Rayyan API v1 repository [here](https://github.com/rayyansys/rayyan-api-docs) inside Insomnia using [this guide](https://docs.insomnia.rest/insomnia/git-sync).
+2. Cloning the Rayyan API v1 repository [here](https://github.com/rayyansys/rayyan-api-docs) inside Insomnia using [this guide](https://docs.insomnia.rest/insomnia/git-sync). N.B. You will need to use the 'Git clone' option and authenticate with GitHub to do this - remember to clone the Rayyan API Github repo, not this one!
 3. You should see all endpoints in the API. Try them one by one and go to any endpoint and click the Docs tab for more information.
 
 ### Issues and suggestions
