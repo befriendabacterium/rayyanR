@@ -1,4 +1,4 @@
-#' get_review_results_raw
+#' reviewresults_req
 #'
 #' gets a review from the rayyan API and outputs the results an R object
 #'
@@ -11,7 +11,7 @@
 #'
 #' @return the R object containing the result of the API call
 #' @export
-get_review_results_raw <- function(api_tokens, review_id) {
+reviewresults_req <- function(api_tokens, review_id) {
   reviews_route <- paste0("/api/v1/reviews/", review_id, "/results")
   url <- paste0("https://rayyan.ai",  reviews_route)
   req <- httr2::request(url)

@@ -1,4 +1,4 @@
-#' get_review_results_df_tidied
+#' reviewresults
 #'
 #' gets a review from the rayyan API and outputs the results a tidied R object
 #'
@@ -11,10 +11,9 @@
 #'
 #' @return the R object containing the result of the API call #' 
 #' @export
-get_review_results_df_tidied <- function(api_tokens, review_id) {
-  
+reviewresults <- function(api_tokens, review_id) {
   #GET 
-  body<-get_review_results_raw(api_tokens, review_id)
+  body<-reviewresults_req(api_tokens, review_id)
   #parse json body (list format) to data.frame with nested lists
   review_results_df<-data.frame(t(sapply(body$data,c)))
   #unlist the 2nd level list of keyphrases, then apply paste on the resulting 1st level list to paste together (after uncapitalising) into one ;-separated string
@@ -26,14 +25,14 @@ get_review_results_df_tidied <- function(api_tokens, review_id) {
   #remove redundant _1's (for unnested columns)
   colnames(review_results_df)<-gsub("_1", "", colnames(review_results_df))
   #calculate included consensus
-  review_results_df<-calculate_included_consensus(review_results_df = review_results_df)
+  review_results_df<-reviewresults_calculateconsensus(review_results_df = review_results_df)
   
   #Rename 'customizations' columns to a more tidy format 
-  ##replace 'customizations_included_' with 'screeningdecisions_'
+  ##replace 'customizations_included_' with 'record_decision_'
   colnames(review_results_df) <- gsub("customizations_included_", "record_decision_", colnames(review_results_df))
-  ##replace 'customizations___EXR_' with 'exclusionreason_'
+  ##replace 'customizations___EXR_' with 'record_exreason_'
   colnames(review_results_df) <- gsub("customizations___EXR_", "record_exreason_", colnames(review_results_df))
-  ##replace 'customizationions_labels' with 'labels_'
+  ##replace 'customizations_labels' with 'record_label'
   colnames(review_results_df) <- gsub("customizations_labels", "record_label", colnames(review_results_df))
   
   #review_info<-get_review_info_raw(api_tokens, review_id)
