@@ -13,7 +13,7 @@
 #' @export
 reviewresults <- function(api_tokens, review_id) {
   #GET 
-  body<-reviewresults_req(api_tokens, review_id)
+  body<-reviewresults_req_reports(api_tokens, review_id)
   #parse json body (list format) to data.frame with nested lists
   review_results_df<-data.frame(t(sapply(body$data,c)))
   #unlist the 2nd level list of keyphrases, then apply paste on the resulting 1st level list to paste together (after uncapitalising) into one ;-separated string
