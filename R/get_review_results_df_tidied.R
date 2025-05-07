@@ -32,7 +32,7 @@ get_review_results_df_tidied <- function(api_tokens, review_id) {
   ##replace 'customizations_included_' with 'screeningdecisions_'
   colnames(review_results_df) <- gsub("customizations_included_", "record_decision_", colnames(review_results_df))
   ##replace 'customizations___EXR_' with 'exclusionreason_'
-  colnames(review_results_df) <- gsub("customizations___EXR_", "exclusionreason_", colnames(review_results_df))
+  colnames(review_results_df) <- gsub("customizations___EXR_", "record_exreason_", colnames(review_results_df))
   ##replace 'customizationions_labels' with 'labels_'
   colnames(review_results_df) <- gsub("customizations_labels", "record_label", colnames(review_results_df))
   
