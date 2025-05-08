@@ -6,7 +6,7 @@
 #' or login_tokens_and_env()
 #' @param review_id the rayyan ID of the review to get - this can be obtained via
 #' get_reviews
-#'@param stages stages of review to be retrieved. default is 'both'.
+#' @param stages stages of review to be retrieved. default is 'both'.
 
 #' @keywords internal
 #'
