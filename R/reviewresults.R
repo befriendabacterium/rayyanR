@@ -62,7 +62,7 @@ reviewresults <- function(api_tokens, review_id, stages='both') {
   }
     
     #merge stages into one df
-    review_results_df_bothstages <- dplyr::left_join(review_results_df_records, review_results_df_reports)
+    review_results_df <- dplyr::left_join(review_results_df_records, review_results_df_reports)
     
     #review_info<-get_review_info_raw(api_tokens, review_id)
     #NB DISABLED RENAMING AS NOT WORKING - CHECK RENAME_INCLUDED_COLS_NAMES/VALUES() FUNCTIONS
@@ -70,9 +70,8 @@ reviewresults <- function(api_tokens, review_id, stages='both') {
     #review_results_df<-rename_included_cols_values(review_results_df = review_results_df)
     #if one reviewer is NA, remove
     }
-  }
   
-  return(review_results_df_bothstages)
+  return(review_results_df)
 }
 
 # run at end to update documentation
