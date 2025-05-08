@@ -66,8 +66,12 @@ reviewresults <- function(api_tokens, review_id=NULL, stages=c('both','records')
     colnames(review_results_df)<-gsub("_1", "", colnames(review_results_df))
     #move search ids to start of dataframe after IDs for neatness/order everything in order of review
     review_results_df<-review_results_df %>% relocate(search_ids, .after = 'id')
+    #check if fulltext metadata cols
+    fulltext_metadata_cols<-grep('fulltexts',colnames(review_results_df))
     #remove columns with 'fulltexts' in colnames because these have not very useful metadata for fulltexts (e.g. pdf names)
+    if (length(fulltext_metadata_cols)!=0){
     review_results_df<-review_results_df[,-grep('fulltexts',colnames(review_results_df))]
+    }
     
     #calculate included consensus
     review_results_df<-reviewresults_calculateconsensus(review_results_df = review_results_df)
