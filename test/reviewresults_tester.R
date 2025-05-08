@@ -1,14 +1,21 @@
 api_tokens<-jsonlite::read_json("rayyan_tokens.json")
 review_id = "1441821"
 stages = 'both'
+fulltextreview_id = NULL
 remotes::install_github("https://github.com/befriendabacterium/rayyanR", ref = 'dev', force=T)
 library(dplyr)
 library(rayyanR)
 
+recordsreview_id = "1441821"
+reportreview_id = "1445423"
 
-reports_raw<-rayyanR::reviewresults_req_reports(api_tokens = api_tokens, review_id = "1441821")
+generic_results<-reviewresults(api_tokens = api_tokens, review_id = "1441821", stages='one')
 
-test_df<-reviewresults(api_tokens = api_tokens, review_id = "1441821",stages = 'both')
+records_results<-reviewresults(api_tokens = api_tokens, recordsreview_id = "1441821", stages='one')
+
+reports_results<-reviewresults(api_tokens = api_tokens, reportsreview_id = "1445423",  stages='one')
+
+records_and_reports_results<-reviewresults(api_tokens = api_tokens, recordsreview_id = "1441821", reportsreview_id = "1445423", stages='one')
 
 
 devtools::document()
