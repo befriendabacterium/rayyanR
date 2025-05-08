@@ -75,7 +75,7 @@ S3.2_sought_reports_n<-nrow(S3.2_sought_reports)
 nofulltext_colstring<-stringr::str_replace_all(nofulltext_string,' |/','.')
   
 #make a 'column finder' vector by appending the column prefix
-colfinder<-paste('customizations_labels_',nofulltext_colstring, sep='')
+colfinder<-paste('record_label_',nofulltext_colstring, sep='')
   
 #identify columns holding the exclusion reasons
 nofulltext_columns<-match(colfinder,colnames(S3.2_sought_reports))
@@ -122,7 +122,7 @@ for (c in 1:length(exclusionreasons_colstrings)){
   #if no matching columns...
   if(length(matchingcols)==0){
   #add the column for that exclusion reason to the dataframe, filled with zeros 
-  S4.3_excluded_reports[,paste('customizations_labels_',exclusionreasons_colstrings[c], sep='')]<-0
+  S4.3_excluded_reports[,paste('report_labels_',exclusionreasons_colstrings[c], sep='')]<-0
   }
   
   #if one matching column...
@@ -132,7 +132,7 @@ for (c in 1:length(exclusionreasons_colstrings)){
     #delete original column to avoid confusion
     S4.3_excluded_reports[,matchingcols]<-NULL
     #replace with new column with right name
-    S4.3_excluded_reports[,paste('customizations_labels_',exclusionreasons_colstrings[c], sep='')]<-replacement
+    S4.3_excluded_reports[,paste('report_labels_',exclusionreasons_colstrings[c], sep='')]<-replacement
   }
   
   #if more than one matching columns (due to weird Rayyan behaviour that adds a reviewer ID for second reviewer in front of label if they labelled it such as well?)
