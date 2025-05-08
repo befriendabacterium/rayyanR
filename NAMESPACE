@@ -2,6 +2,7 @@
 
 export(reviewresults)
 export(reviewresults_calculateconsensus)
+export(reviewresults_req)
 export(reviewresults_req2df)
 export(reviewresults_req_records)
 export(reviewresults_req_reports)
