@@ -4,16 +4,24 @@
 \alias{reviewresults}
 \title{reviewresults}
 \usage{
-reviewresults(api_tokens, review_id, fulltextreview_id = NULL)
+reviewresults(
+  api_tokens,
+  review_id = NULL,
+  stages = c("both", "records"),
+  recordsreview_id = NULL,
+  reportsreview_id = NULL
+)
 }
 \arguments{
-\item{api_tokens}{the api environment from load_tokens_and_env()
-or login_tokens_and_env()}
+\item{api_tokens}{the api environment from load_tokens_and_env() or login_tokens_and_env()}
 
-\item{review_id}{the rayyan ID of the review to get - this can be obtained via
-get_reviews}
+\item{review_id}{the rayyan ID of the review to get - this can be obtained via}
 
-\item{fulltextreview_id}{if there is a separate review for the full text (rather than it being in), specify it here'.}
+\item{stages}{specify if both stages present in the review}
+
+\item{recordsreview_id}{if there is a separate review for the records/abstract (rather than it being in), specify it here'.}
+
+\item{reportsreview_id}{if there is a separate review for the reports/full text (rather than it being in), specify it here'.}
 }
 \value{
 the R object containing the result of the API call #'
