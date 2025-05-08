@@ -11,15 +11,25 @@
 #' @keywords internal
 #' @return the R object containing the result of the API call  
 #' @export
-rayyan2PRISMA2020<-function(identification_databases,
-                            identification_duplicates,
-                            screening_records,
-                            screening_reports,
+rayyan2PRISMA2020<-function(identification_databases=NULL,
+                            identification_duplicates=NULL,
+                            screening_recordsandreports=NULL,
+                            screening_records=NULL,
+                            screening_reports=NULL,
                             nofulltext_string = 'No full text available',
-                            exclusionreasons_reports,
-                            included_studies_n
+                            exclusionreasons_reports=NULL,
+                            included_studies_n=NULL
                             ){
 
+
+#if a review with records and reports is supplied, then split it into a records and reports dataframe for processing
+if (!is.null(screening_recordsandreports)){
+  
+  screening_records<-screening_recordsandreports[,grep('record',colnames(screening_recordsandreports))]
+  screening_reports<-screening_recordsandreports[,grep('report',colnames(screening_recordsandreports))]
+                                                                                              
+}
+  
 # CALCULATE NUMBERS FOR PRISMA ------------------------------------------------------------
   
 ## 1.1: PREVIOUS STUDIES -------------------------------------------------------
