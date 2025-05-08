@@ -21,6 +21,7 @@ reviewresults <- function(api_tokens, review_id, stages='both') {
   bodies<-list(body_records,body_reports)
   
   for (i in 1:length(bodies)){
+    
     #parse json body (list format) to data.frame with nested lists
     review_results_df<-data.frame(t(sapply(bodies[[i]]$data,c)))
     #unlist the 2nd level list of keyphrases, then apply paste on the resulting 1st level list to paste together (after uncapitalising) into one ;-separated string
@@ -31,6 +32,9 @@ reviewresults <- function(api_tokens, review_id, stages='both') {
     review_results_df<-unnest_all(review_results_df)
     #remove redundant _1's (for unnested columns)
     colnames(review_results_df)<-gsub("_1", "", colnames(review_results_df))
+    #move search ids to start of dataframe after IDs for neatness/order everything in order of review
+    review_results_df<-review_results_df %>% relocate(search_ids, search_ids, .after = 'id')
+    
     #calculate included consensus
     review_results_df<-reviewresults_calculateconsensus(review_results_df = review_results_df)
     
