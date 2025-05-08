@@ -7,11 +7,10 @@
 #' @param review_id the rayyan ID of the review to get - this can be obtained via
 #' get_reviews
 #' @param stages stages of review to be retrieved. default is 'both'.
-
 #' @keywords internal
-#'
 #' @return the R object containing the result of the API call #' 
 #' @export
+
 reviewresults <- function(api_tokens, review_id, stages='both') {
   
   if (stages=='both'){
