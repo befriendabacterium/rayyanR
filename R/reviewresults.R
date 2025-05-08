@@ -6,17 +6,17 @@
 #' or login_tokens_and_env()
 #' @param review_id the rayyan ID of the review to get - this can be obtained via
 #' get_reviews
-#' @param stages stages of review to be retrieved. default is 'both'.
+#' @param fulltextreview_id if there is a separate review for the full text (rather than it being in), specify it here'.
 #' @keywords internal
 #' @return the R object containing the result of the API call #' 
 #' @export
 
-reviewresults <- function(api_tokens, review_id, stages='both') {
+reviewresults <- function(api_tokens, review_id, fulltextreview_id=NULL) {
   
-  if (stages=='both'){
+  if (is.null(fulltextreview_id)){
   #get JSON bodies for both stages  
   body_records<-reviewresults_req_records(api_tokens, review_id)
-  body_reports<-reviewresults_req_reports(api_tokens, review_id)
+  body_reports<-reviewresults_req_reports(api_tokens, review_id='1441821') #temporarily specify review id as currently only works with this function
   bodies<-list(body_records,body_reports)
   
   for (i in 1:length(bodies)){
