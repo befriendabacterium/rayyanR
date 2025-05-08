@@ -1,3 +1,17 @@
+#' rayyan2PRISMA2020
+#'
+#' gets a review from the rayyan API and outputs the results a tidied R object
+#' @param identification_databases a list of search databases
+#' @param identification_duplicates database of duplicates
+#' @param screening_records database of screened records
+#' @param screening_reports database of screened reports
+#' @param nofulltext_string string used for denoting no full text available
+#' @param exclusionreasons_reports vector of strings for exclusion reasons to be tallied
+#' @param included_studies_n number of included studies (not reports) at end
+#' @keywords internal
+#' @return the R object containing the result of the API call  
+#' @export
+
 rayyan2PRISMA2020<-function(identification_databases,
                             identification_duplicates,
                             screening_records,
