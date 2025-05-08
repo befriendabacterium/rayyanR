@@ -11,7 +11,6 @@
 #' @keywords internal
 #' @return the R object containing the result of the API call  
 #' @export
-
 rayyan2PRISMA2020<-function(identification_databases,
                             identification_duplicates,
                             screening_records,
