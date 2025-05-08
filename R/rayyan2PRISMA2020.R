@@ -3,6 +3,7 @@
 #' gets a review from the rayyan API and outputs the results a tidied R object
 #' @param identification_databases a list of search databases
 #' @param identification_duplicates database of duplicates
+#' @param screening_recordsandreports database of screened records and reports
 #' @param screening_records database of screened records
 #' @param screening_reports database of screened reports
 #' @param nofulltext_string string used for denoting no full text available

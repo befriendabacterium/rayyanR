@@ -5,19 +5,22 @@
 \title{rayyan2PRISMA2020}
 \usage{
 rayyan2PRISMA2020(
-  identification_databases,
-  identification_duplicates,
-  screening_records,
-  screening_reports,
+  identification_databases = NULL,
+  identification_duplicates = NULL,
+  screening_recordsandreports = NULL,
+  screening_records = NULL,
+  screening_reports = NULL,
   nofulltext_string = "No full text available",
-  exclusionreasons_reports,
-  included_studies_n
+  exclusionreasons_reports = NULL,
+  included_studies_n = NULL
 )
 }
 \arguments{
 \item{identification_databases}{a list of search databases}
 
 \item{identification_duplicates}{database of duplicates}
+
+\item{screening_recordsandreports}{database of screened records and reports}
 
 \item{screening_records}{database of screened records}
 
