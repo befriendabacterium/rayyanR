@@ -106,7 +106,7 @@ reviewresults <- function(api_tokens, review_id=NULL, stages=c('both','records')
   }
   
   #if there is a records id AND a reports ID, bind into one
-    if (!is.null(recordsreview_id)&!is.null(reportsreview_id)){
+  if (!is.null(recordsreview_id)&!is.null(reportsreview_id)){
     #merge stages into one df
     review_results_df <- dplyr::left_join(review_results_df_records, review_results_df_reports)
     }
