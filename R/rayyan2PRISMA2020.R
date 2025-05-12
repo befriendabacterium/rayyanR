@@ -4,8 +4,6 @@
 #' @param identification_databases a list of search databases
 #' @param identification_duplicates database of duplicates
 #' @param screening_recordsandreports database of screened records and reports
-#' @param screening_records database of screened records
-#' @param screening_reports database of screened reports
 #' @param nofulltext_string string used for denoting no full text available
 #' @param exclusionreasons_reports vector of strings for exclusion reasons to be tallied
 #' @param included_studies_n number of included studies (not reports) at end
@@ -15,21 +13,11 @@
 rayyan2PRISMA2020<-function(identification_databases=NULL,
                             identification_duplicates=NULL,
                             screening_recordsandreports=NULL,
-                            screening_records=NULL,
-                            screening_reports=NULL,
                             nofulltext_string = 'No full text available',
                             exclusionreasons_reports=NULL,
                             included_studies_n=NULL
                             ){
 
-
-#if a review with records and reports is supplied, then split it into a records and reports dataframe for processing
-if (!is.null(screening_recordsandreports)){
-  
-  screening_records<-screening_recordsandreports[,grep('record',colnames(screening_recordsandreports))]
-  screening_reports<-screening_recordsandreports[,grep('report',colnames(screening_recordsandreports))]
-                                                                                              
-}
   
 # CALCULATE NUMBERS FOR PRISMA ------------------------------------------------------------
   
@@ -38,7 +26,7 @@ if (!is.null(screening_recordsandreports)){
 #Not applicable
   
 ## 1.2: RECORDS IDENTIFIED FROM DATABASES AND REGISTERS -------------------------------------------------------
-  
+
 #bind dataframes in list together
 S1.2_database_results<-dplyr::bind_rows(identification_databases)
 S1.2_database_results_n<-nrow(S1.2_database_results)
@@ -53,7 +41,7 @@ S1.3_duplicates_n<-nrow(identification_duplicates)
 
 ## 2.2: ABSTRACT SCREENING: SCREENED RECORDS FROM DATABASES AND REGISTERS ------------------------------------------------------
   
-S2.2_records_screened<-screening_records
+S2.2_records_screened<-screening_recordsandreports
 S2.2_records_screened_n<-nrow(S2.2_records_screened)
   
 # abstracts_original_all_incdecs<-c("undecided"=0,"maybe"=0,"included"=0,"excluded"=0,"conflict"=0)
@@ -65,22 +53,22 @@ S2.2_records_screened_n<-nrow(S2.2_records_screened)
   
 ## 2.3: ABSTRACT SCREENING: EXCLUDED RECORDS RFROM DATABASES AND REGISTERS ------------------------------------------------------
 
-S2.3_records_excluded<-S2.2_records_screened[S2.2_records_screened$report_decision_consensus=='excluded',]
+S2.3_records_excluded<-S2.2_records_screened[S2.2_records_screened$record_decision_consensus=='excluded',]
 S2.3_records_excluded_n<-nrow(S2.3_records_excluded)
   
 #check records screened minus excluded equals reports sought for retrieval
-(S2.2_records_screened_n-S2.3_records_excluded_n)==nrow(screening_reports)
-  
+(S2.2_records_screened_n-S2.3_records_excluded_n)==nrow(screening_recordsandreports)
+
 ## 3.2: FULL TEXT RETRIEVAL: RECORDS SOUGHT FROM DATABASES AND REGISTERS ------------------------------------------------------
   
 #assign full texts to sought reports (equivalent in our implementation)
-S3.2_sought_reports<-screening_reports
+S3.2_sought_reports<-screening_recordsandreports[!is.na(screening_recordsandreports$fulltextscreening_id),]
 S3.2_sought_reports_n<-nrow(S3.2_sought_reports)
 
 #check records screened minus excluded equals reports sought for retrieval
 (S2.2_records_screened_n-S2.3_records_excluded_n)==S3.2_sought_reports_n
   
-  ## 3.3: FULL TEXT RETRIEVAL: RECORDS NOT RETRIVED FROM DATABASES AND REGISTERS ------------------------------------------------------
+## 3.3: FULL TEXT RETRIEVAL: RECORDS NOT RETRIVED FROM DATABASES AND REGISTERS ------------------------------------------------------
   
 #reformat way Rayyan has in column names
 nofulltext_colstring<-stringr::str_replace_all(nofulltext_string,' |/','.')
@@ -123,13 +111,16 @@ S4.3_excluded_reports_n
 #reformat way Rayyan has in column names
 exclusionreasons_colstrings<-stringr::str_replace_all(exclusionreasons_reports,' |/','.')
 
+#make grep string so specifies report followed by string (not record)
+exclusionreasons_colstrings<-paste('report.*',exclusionreasons_colstrings, sep='')
+
 for (c in 1:length(exclusionreasons_colstrings)){
   
   #find matching columns
   matchingcols<-
     grep(exclusionreasons_colstrings[c],
          colnames(S4.3_excluded_reports))
-
+  
   #if no matching columns...
   if(length(matchingcols)==0){
   #add the column for that exclusion reason to the dataframe, filled with zeros 
