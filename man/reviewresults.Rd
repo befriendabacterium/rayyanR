@@ -6,10 +6,9 @@
 \usage{
 reviewresults(
   api_tokens,
-  review_id = NULL,
-  stages = c("both", "records"),
-  recordsreview_id = NULL,
-  reportsreview_id = NULL
+  recordsandreports_review_id = NULL,
+  records_review_id = NULL,
+  reports_review_id = NULL
 )
 }
 \arguments{
@@ -17,11 +16,11 @@ reviewresults(
 
 \item{review_id}{the rayyan ID of the review to get - this can be obtained via}
 
-\item{stages}{specify if both stages present in the review}
+\item{recordsandreportsreview_id}{f there is a single review containing both the records/abstract and reports/full text stages (intended implementation of Rayyan), specify it here (N.B. This is currently a placeholder and won't work as there is currently no API endpoint from which to read the full text stage of a Rayyan review, as far as I can tell)}
 
-\item{recordsreview_id}{if there is a separate review for the records/abstract (rather than it being in), specify it here'.}
+\item{recordsreview_id}{if there is a separate review for the records/abstract (rather than it being in a single review with the reports/full text stage), specify it here'.}
 
-\item{reportsreview_id}{if there is a separate review for the reports/full text (rather than it being in), specify it here'.}
+\item{reportsreview_id}{if there is a separate review for the reports/full text (rather than it being in a single review with the records/abstract stage), specify it here'.}
 }
 \value{
 the R object containing the result of the API call #'

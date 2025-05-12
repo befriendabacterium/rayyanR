@@ -8,8 +8,6 @@ rayyan2PRISMA2020(
   identification_databases = NULL,
   identification_duplicates = NULL,
   screening_recordsandreports = NULL,
-  screening_records = NULL,
-  screening_reports = NULL,
   nofulltext_string = "No full text available",
   exclusionreasons_reports = NULL,
   included_studies_n = NULL
@@ -20,11 +18,7 @@ rayyan2PRISMA2020(
 
 \item{identification_duplicates}{database of duplicates}
 
-\item{screening_recordsandreports}{database of screened records and reports}
-
-\item{screening_records}{database of screened records}
-
-\item{screening_reports}{database of screened reports}
+\item{screening_recordsandreports}{database of review results for all screened records, with results at both records and reports stage for each record}
 
 \item{nofulltext_string}{string used for denoting no full text available}
 
