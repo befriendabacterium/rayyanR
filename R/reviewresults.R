@@ -10,47 +10,35 @@
 #' @return the R object containing the result of the API call #' 
 #' @export
 
-reviewresults <- function(api_tokens, review_id=NULL, stages=c('both','records'), recordsreview_id=NULL, reportsreview_id=NULL) {
+reviewresults <- function(api_tokens, recordsandreports_review_id=NULL, records_review_id=NULL, reports_review_id=NULL) {
   
   bodies<-list()
   
-  #if there is only a review id with two stages, get results for both stages
-  if (!is.null(review_id)&stages=='both'){
-    body_records<-reviewresults_req_records(api_tokens, review_id)
+  #if there is a recordsandreports review id (intended implementation of Rayyan), get results for both stages
+  if (!is.null(recordsandreports_review_id)){
+    body_records<-reviewresults_req_records(api_tokens, review_id=recordsandreports_review_id)
+    bodies[[length(bodies)+1]]<-body_records #add record body to list
+    names(bodies)[length(bodies)]<-c('records')
     body_reports<-reviewresults_req_reports(api_tokens, review_id='1441821') #temporarily specify review id as currently only works with this function
-    bodies<-list(body_records, body_reports)
-    names(bodies)<-c('records','reports')
-    
-  }
-    
-  #if there is only a review id with only records stage, get results for the records stage
-  if (!is.null(review_id)&stages=='one'){
-    #reset bodies
-    bodies<-list() 
-    #get JSON bodies for both stages  
-    body_records<-reviewresults_req_records(api_tokens, review_id)
-    bodies[[length(bodies)+1]]<-body_records
-    names(bodies)[[length(bodies)]]<-'reports'
+    bodies[[length(bodies)+1]]<-body_records #add report body to list
+    names(bodies)[length(bodies)]<-c('reports')
   }
   
-  #if there is a records id, get results for the records stage
-  if (!is.null(recordsreview_id)){
-    #reset bodies
-    bodies<-list() 
-    #get JSON bodies for both stages  
-    body_records<-reviewresults_req_records(api_tokens, review_id=recordsreview_id)
-    bodies[[length(bodies)+1]]<-body_records
-    names(bodies)[[length(bodies)]]<-'records'
+  #if there is a records stage ID, get results for the records stage
+  if (!is.null(records_review_id)){
+    body_records<-reviewresults_req_records(api_tokens, review_id=records_review_id)
+    bodies[[length(bodies)+1]]<-body_records #add record body to list
+    names(bodies)[length(bodies)]<-c('records')
+    
   }
   
-  #if there is a reports id, get results for the reports stage
-  if (!is.null(reportsreview_id)){
-    #get JSON bodies for both stages  
-    body_reports<-reviewresults_req_reports(api_tokens, review_id='1441821') #temporarily specify review id as currently only works with this function
-    bodies[[length(bodies)+1]]<-body_reports
-    names(bodies)[[length(bodies)]]<-'reports'
+  #if there is a reports stage ID, get results for the records stage (N.B. if there's a separate records stage ID, the reports stage will be added after in the list)
+  if (!is.null(reports_review_id)){
+    body_reports<-reviewresults_req_records(api_tokens, review_id=reports_review_id)
+    bodies[[length(bodies)+1]]<-body_reports #add report body to list
+    names(bodies)[length(bodies)]<-c('reports')
   }
-
+    
   #then apply to all bodies  
   for (i in 1:length(bodies)){
     
@@ -69,10 +57,7 @@ reviewresults <- function(api_tokens, review_id=NULL, stages=c('both','records')
     #check if fulltext metadata cols
     fulltext_metadata_cols<-grep('fulltexts',colnames(review_results_df))
     #remove columns with 'fulltexts' in colnames because these have not very useful metadata for fulltexts (e.g. pdf names)
-    if (length(fulltext_metadata_cols)!=0){
-    review_results_df<-review_results_df[,-grep('fulltexts',colnames(review_results_df))]
-    }
-    
+    if (length(fulltext_metadata_cols)!=0){review_results_df<-review_results_df[,-grep('fulltexts',colnames(review_results_df))]}
     #calculate included consensus
     review_results_df<-reviewresults_calculateconsensus(review_results_df = review_results_df)
     
@@ -85,6 +70,8 @@ reviewresults <- function(api_tokens, review_id=NULL, stages=c('both','records')
     colnames(review_results_df) <- gsub("customizations___EXR_", "record_exreason_", colnames(review_results_df))
     ##replace 'customizations_labels' with 'record_label'
     colnames(review_results_df) <- gsub("customizations_labels", "record_label", colnames(review_results_df))
+    #rename (rayyan) id column to 'record_id'
+    review_results_df <- review_results_df %>% rename(screening_id=id)
     #assign results df to explicitly stage-labelled df
     review_results_df_records<-review_results_df
     }
@@ -98,22 +85,34 @@ reviewresults <- function(api_tokens, review_id=NULL, stages=c('both','records')
     colnames(review_results_df) <- gsub("customizations___EXR_", "report_exreason_", colnames(review_results_df))
     ##replace 'customizations_labels' with 'record_label'
     colnames(review_results_df) <- gsub("customizations_labels", "report_label", colnames(review_results_df))
+    ##rename (rayyan) screening id column to 'record_id'
+    review_results_df <- review_results_df %>% rename(screening_id=sid)
+    ##rename (rayyan) full text id column to 'record_id'
+    review_results_df <- review_results_df %>% rename(fulltextscreening_id=id)
+    #clear "rayyan-" from string and coerce to integer
+    review_results_df$screening_id <- as.integer(gsub("rayyan-", "", review_results_df$screening_id))
+    #move screening ids to start of dataframe after IDs for neatness/order everything in order of review
+    review_results_df<-review_results_df %>% relocate(screening_id, .before = 'fulltextscreening_id')
     #assign results df to explicitly stage-labelled df
     review_results_df_reports<-review_results_df
     }
   }
    
-  #if there is a records id AND a reports ID, bind into one
-  if (stages=='both'){
+  # if there is a records id AND a reports ID, bind into one
+  # NB it appears that things marked as 'Maybe' in a Rayyan export have their sid (screening id?) turned to NA
+  # therefore when matching this way, 'Maybes' are removed
+  # therefore as you cannot currently delete records in Rayyan, 
+  # a workaround if you have accidently screened something at full text stage which you shouldn't have
+  # is to get all reviewers to mark it as 'Maybe'..
+  # a bit janky and should watch out for bugs but currently seems to work and
+  # should be a better fix if Rayyan make it possible to remove/censor records in future
+  # or better, avoidable if users just do abstract and full text in one Rayyan review as intended (and Rayyan get API working for full text stage...)
+  if (length(bodies)==2){
     #merge stages into one df
-    review_results_df <- dplyr::left_join(review_results_df_records, review_results_df_reports)
-  }
-  
-  #if there is a records id AND a reports ID, bind into one
-  if (!is.null(recordsreview_id)&!is.null(reportsreview_id)){
-    #merge stages into one df
-    review_results_df <- dplyr::left_join(review_results_df_records, review_results_df_reports)
-    }
+    review_results_df <- dplyr::left_join(review_results_df_records, review_results_df_reports, by='screening_id', suffix=c("",".y")) %>%  select(-ends_with(".y"))
+    #check results (excluded at record stage should have no decisions at report)
+    #test<-review_results_df[,c("record_decision_consensus","report_decision_consensus")]
+      }
     
     #review_info<-get_review_info_raw(api_tokens, review_id)
     #NB DISABLED RENAMING AS NOT WORKING - CHECK RENAME_INCLUDED_COLS_NAMES/VALUES() FUNCTIONS
