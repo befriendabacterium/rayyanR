@@ -1,0 +1,175 @@
+TY  - JOUR
+AN  - rayyan-229697632
+TI  - Exploring the potential of using simulation games for engaging with sheep farmers about lameness recognition
+Y1  - 2023
+T2  - Frontiers in Veterinary Science
+SN  - 2297-1769
+VL  - 10
+AU  - Jones, Matt L.
+AU  - Barnish, Maxwell S.
+AU  - Hughes, Robert R.
+AU  - Murray, Aimee K.
+AU  - Mansour, Omid
+AU  - Loni, Tiziana
+AU  - Vickery, Holly M.
+AU  - Evans, Myfanwy L.
+AU  - Green, Laura
+AU  - Verdezoto, Nervo
+UR  - https://www.frontiersin.org/articles/10.3389/fvets.2023.1079948
+AB  - IntroductionComputer simulation games are increasingly being used in agriculture as a promising tool to study, support and influence real-life farming practices. We explored the potential of using simulation games to engage with sheep farmers on the ongoing challenge of reducing lameness. Working with UK stakeholders, we developed a game in which players are challenged with identifying all the lame sheep in a simulated flock. Here, we evaluate the game's potential to act as a tool to help assess, train and understand farmers' ability to recognize the early signs of lameness.MethodsParticipants in the UK were invited to play the game in an online study, sharing with us their in-game scores alongside information relating to their real-life farming experience, how they played the game, and feedback on the game. Mixed methods were used to analyze this information in order to evaluate the game. Quantitative analyses consisted of linear modeling to test for statistical relationships between participants' in-game recall (% of the total number of lame sheep that were marked as lame), and the additional information they provided. Qualitative analyses of participants' feedback on the game consisted of thematic analysis and a Likert Scale questionnaire to contextualize the quantitative results and identify additional insights from the study.ResultsQuantitative analyses identified no relationships between participants' (n = 63) recall scores and their real life farming experience, or the lameness signs they looked for when playing the game. The only relationship identified was a relationship between participants' recall score and time spent playing the game. Qualitative analyses identified that participants did not find the game sufficiently realistic or engaging, though several enjoyed playing it and saw potential for future development. Qualitative analyses also identified several interesting and less-expected insights about real-life lameness recognition practices that participants shared after playing the game.DiscussionSimulation games have potential as a tool in livestock husbandry education and research, but achieving the desired levels of realism and/or engagingness may be an obstacle to realizing this. Future research should explore this potential further, aided by larger budgets and closer collaboration with farmers, stockpeople, and veterinarians.
+N1  - RAYYAN-INCLUSION: {"Matt"=>"Included", "Laura"=>"Included"}
+ER  -
+
+TY  - RPRT
+AN  - rayyan-229697633
+TI  - Review of airborne antimicrobial resistance
+Y1  - 2020
+AU  - Jones, Matt
+UR  - https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/1036379/Review_of_airborne_antimicrobial_resistance_-_report.pdf
+PB  - Environment Agency
+N1  - RAYYAN-INCLUSION: {"Matt"=>"Included", "Laura"=>"Included"} | RAYYAN-LABELS: lol,rofl
+ER  -
+
+TY  - JOUR
+AN  - rayyan-229697635
+TI  - Elevated success of multispecies bacterial invasions impacts community composition during ecological succession
+Y1  - 2018
+T2  - Ecology Letters
+SN  - 1461-0248
+VL  - 21
+IS  - 4
+SP  - 516-524
+AU  - Rivett, Damian W.
+AU  - Jones, Matt L.
+AU  - Ramoneda, Josep
+AU  - Mombrikotb, Shorok B.
+AU  - Ransome, Emma
+AU  - Bell, Thomas
+UR  - https://onlinelibrary.wiley.com/doi/abs/10.1111/ele.12916
+LA  - en
+KW  - Bacteria
+KW  - Invasion
+KW  - next generation sequencing
+KW  - community assembly
+KW  - community stability
+KW  - species sorting
+KW  - timing
+AB  - Successful microbial invasions are determined by a species’ ability to occupy a niche in the new habitat whilst resisting competitive exclusion by the resident community. Despite the recognised importance of biotic factors in determining the invasiveness of microbial communities, the success and impact of multiple concurrent invaders on the resident community has not been examined. Simultaneous invasions might have synergistic effects, for example if resident species need to exhibit divergent phenotypes to compete with the invasive populations. We used three phylogenetically diverse bacterial species to invade two compositionally distinct communities in a controlled, naturalised in vitro system. By initiating the invader introductions at different stages of succession, we could disentangle the relative importance of resident community structure, invader diversity and time pre-invasion. Our results indicate that multiple invaders increase overall invasion success, but do not alter the successional trajectory of the whole community.
+N1  - RAYYAN-INCLUSION: {"Matt"=>"Included", "Laura"=>"Included"}
+DO  - 10.1111/ele.12916
+ER  -
+
+TY  - JOUR
+AN  - rayyan-229697638
+TI  - Replicating community dynamics reveals how initial composition shapes the functional outcomes of bacterial communities
+Y1  - 2025
+Y2  - 3
+Y3  - 31
+T2  - Nature Communications
+SN  - 2041-1723
+J2  - Nat Commun
+VL  - 16
+IS  - 1
+SP  - 3002
+AU  - Pascual-García, A.
+AU  - Rivett, D. W.
+AU  - Jones, Matt Lloyd
+AU  - Bell, T.
+UR  - https://www.nature.com/articles/s41467-025-57591-2
+LA  - en
+KW  - Microbial communities
+KW  - Microbial ecology
+AB  - Bacterial communities play key roles in global biogeochemical cycles, industry, agriculture, human health, and animal husbandry. There is therefore great interest in understanding bacterial community dynamics so that they can be controlled and engineered to optimise ecosystem services. We assess the reproducibility and predictability of bacterial community dynamics by creating a frozen archive of hundreds of naturally-occurring bacterial communities that we repeatedly revive and track in a standardised, complex resource environment. Replicate communities follow reproducible trajectories and the community dynamics closely map to ecosystem functioning. However, even under standardised conditions, the communities exhibit tipping-points, where small differences in initial community composition create divergent compositional and functional outcomes. The predictability of community trajectories therefore requires detailed knowledge of rugged compositional landscapes where ecosystem properties are not the inevitable result of prevailing environmental conditions but can be tilted toward different outcomes depending on the initial community composition. Our results shed light on the relationship between composition and function, opening new avenues to understand the feasibility and limitations of function prediction in complex microbial communities.
+N1  - RAYYAN-INCLUSION: {"Matt"=>"Excluded", "Laura"=>"Excluded"}
+DO  - 10.1038/s41467-025-57591-2
+ER  -
+
+TY  - JOUR
+AN  - rayyan-229697640
+TI  - The promise of community-driven preprints in ecology and evolution
+Y1  - 2025
+Y2  - 1
+Y3  - 29
+T2  - Proceedings of the Royal Society B: Biological Sciences
+VL  - 292
+IS  - 2039
+SP  - 20241487
+AU  - Noble, Daniel W. A.
+AU  - Xirocostas, Zoe A.
+AU  - Wu, Nicholas C.
+AU  - Martinig, April Robin
+AU  - Almeida, Rafaela A.
+AU  - Bairos-Novak, Kevin R.
+AU  - Balti, Heikel
+AU  - Bertram, Michael G.
+AU  - Bliard, Louis
+AU  - Brand, Jack A.
+AU  - Byrne, Ilha
+AU  - Chan, Ying-Chi
+AU  - Clink, Dena Jane
+AU  - Corbel, Quentin
+AU  - Correia, Ricardo A.
+AU  - Crawford-Ash, Jordann
+AU  - Culina, Antica
+AU  - D'Bastiani, Elvira
+AU  - Deme, Gideon G.
+AU  - de Souza Leite, Melina
+AU  - Dhellemmes, Félicie
+AU  - Dimri, Shreya
+AU  - Drobniak, Szymek M.
+AU  - Elsy, Alexander D.
+AU  - Everingham, Susan E.
+AU  - Gascoigne, Samuel J. L.
+AU  - Grainger, Matthew J.
+AU  - Hossack, Gavin C.
+AU  - Hovstad, Knut Anders
+AU  - Ivimey-Cook, Edward R.
+AU  - Jones, Matt Lloyd
+AU  - Kačergytė, Ineta
+AU  - Küstner, Georg
+AU  - Leibold, Dalton C.
+AU  - Mair, Magdalena M.
+AU  - Martin, Jake
+AU  - Mizuno, Ayumi
+AU  - Moodie, Iain R.
+AU  - Moreau, David
+AU  - O'Dea, Rose E.
+AU  - Orr, James A.
+AU  - Paquet, Matthieu
+AU  - Parajuli, Rabindra
+AU  - Pick, Joel L.
+AU  - Pottier, Patrice
+AU  - Purgar, Marija
+AU  - Recio, Pablo
+AU  - Roche, Dominique G.
+AU  - Royauté, Raphaël
+AU  - Shafiei Sabet, Saeed
+AU  - Segovia, Julio M. G.
+AU  - Silva, Inês
+AU  - Sánchez-Tójar, Alfredo
+AU  - Soares, Bruno E.
+AU  - Szabo, Birgit
+AU  - Takola, Elina
+AU  - Thoré, Eli S. J.
+AU  - Timilsina, Bishnu
+AU  - van Dis, Natalie E.
+AU  - Verberk, Wilco C. E. P.
+AU  - Vriend, Stefan J. G.
+AU  - Wild, Kristoffer H.
+AU  - Williams, Coralie
+AU  - Yang, Yefeng
+AU  - Nakagawa, Shinichi
+AU  - Lagisz, Malgorzata
+UR  - https://royalsocietypublishing.org/doi/full/10.1098/rspb.2024.1487
+KW  - EcoEvoRxiv
+KW  - ecology
+KW  - evolution
+KW  - grey literature
+KW  - preprints
+KW  - publication
+KW  - scholarly publishing
+AB  - Publishing preprints is quickly becoming commonplace in ecology and evolutionary biology. Preprints can facilitate the rapid sharing of scientific knowledge establishing precedence and enabling feedback from the research community before peer review. Yet, significant barriers to preprint use exist, including language barriers, a lack of understanding about the benefits of preprints and a lack of diversity in the types of research outputs accepted (e.g. reports). Community-driven preprint initiatives can allow a research community to come together to break down these barriers to improve equity and coverage of global knowledge. Here, we explore the first preprints uploaded to EcoEvoRxiv (n = 1216), a community-driven preprint server for ecologists and evolutionary biologists, to characterize preprint use in ecology, evolution and conservation. Our perspective piece highlights some of the unique initiatives that EcoEvoRxiv has taken to break down barriers to scientific publishing by exploring the composition of articles, how gender and career stage influence preprint use, whether preprints are associated with greater open science practices (e.g. code and data sharing) and tracking preprint publication outcomes. Our analysis identifies areas that we still need to improve upon but highlights how community-driven initiatives, such as EcoEvoRxiv, can play a crucial role in shaping publishing practices in biology.
+N1  - RAYYAN-INCLUSION: {"Matt"=>"Included", "Laura"=>"Included"}
+DO  - 10.1098/rspb.2024.1487
+ER  -
+
