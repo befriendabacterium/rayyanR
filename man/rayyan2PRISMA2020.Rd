@@ -16,9 +16,9 @@ rayyan2PRISMA2020(
 \arguments{
 \item{identification_databases}{a list of search databases}
 
-\item{identification_duplicates}{database of duplicates}
+\item{identification_duplicates}{dataframe of duplicates}
 
-\item{screening_recordsandreports}{database of review results for all screened records, with results at both records and reports stage for each record}
+\item{screening_recordsandreports}{dataframe of review results for all screened records produced by rayyanR::reviewresults, with results at both records and reports stage for each record}
 
 \item{nofulltext_string}{string used for denoting no full text available}
 

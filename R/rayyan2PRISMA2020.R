@@ -2,8 +2,8 @@
 #'
 #' gets a review from the rayyan API and outputs the results a tidied R object
 #' @param identification_databases a list of search databases
-#' @param identification_duplicates database of duplicates
-#' @param screening_recordsandreports database of review results for all screened records, with results at both records and reports stage for each record
+#' @param identification_duplicates dataframe of duplicates
+#' @param screening_recordsandreports dataframe of review results for all screened records produced by rayyanR::reviewresults, with results at both records and reports stage for each record
 #' @param nofulltext_string string used for denoting no full text available
 #' @param exclusionreasons_reports vector of strings for exclusion reasons to be tallied
 #' @param included_studies_n number of included studies (not reports) at end
