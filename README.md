@@ -37,4 +37,4 @@ Currently a one-function (‘get_review_results_df_tidied()’) package to read 
 
 ### Citing this package
 
-Please cite this package as: Jones ML, Pritchard, C & Grainger MJ (2025). rayyanR: An R package to process outputs of the Rayyan screening platform for systematic reviews. <a href="https://github.com/befriendabacterium/rayyanR" target="_blank">https://github.com/befriendabacterium/rayyanR</a>.
+Please cite this package as: Jones ML, Murray, L, Grainger MJ & Pritchard, C (2025). rayyanR: An R package to process outputs of the Rayyan screening platform for systematic reviews. <a href="https://github.com/befriendabacterium/rayyanR" target="_blank">https://github.com/befriendabacterium/rayyanR</a>.
