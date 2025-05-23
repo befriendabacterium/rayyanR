@@ -19,7 +19,7 @@ reviewresults <- function(api_tokens, recordsandreports_review_id=NULL, records_
     body_records<-reviewresults_req_records(api_tokens, review_id=recordsandreports_review_id)
     bodies[[length(bodies)+1]]<-body_records #add record body to list
     names(bodies)[length(bodies)]<-c('records')
-    body_reports<-reviewresults_req_reports(api_tokens, review_id='1441821') #temporarily specify review id as currently only works with this function
+    body_reports<-reviewresults_req_reports(api_tokens, review_id=recordsandreports_review_id)
     bodies[[length(bodies)+1]]<-body_records #add report body to list
     names(bodies)[length(bodies)]<-c('reports')
   }
