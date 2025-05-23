@@ -119,6 +119,7 @@ reviewresults <- function(api_tokens, recordsandreports_review_id=NULL, records_
     review_results_df <- dplyr::left_join(review_results_df_records, review_results_df_reports, by='screening_id', suffix=c("",".y")) %>%  select(-ends_with(".y"))
     #check results (excluded at record stage should have no decisions at report)
     #test<-review_results_df[,c("record_decision_consensus","report_decision_consensus")]
+    review_results_df<-review_results_df %>% relocate(fulltextscreening_id, .after = 'screening_id')
       }
     
     #review_info<-get_review_info_raw(api_tokens, review_id)
