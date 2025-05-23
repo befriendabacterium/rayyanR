@@ -85,8 +85,15 @@ reviewresults <- function(api_tokens, recordsandreports_review_id=NULL, records_
     colnames(review_results_df) <- gsub("customizations___EXR_", "report_exreason_", colnames(review_results_df))
     ##replace 'customizations_labels' with 'record_label'
     colnames(review_results_df) <- gsub("customizations_labels", "report_label", colnames(review_results_df))
+    
+    #if 'sid' column exists, rename to 'screening_id'
+    ifelse("sid" %in% colnames(review_results_df),
     ##rename (rayyan) screening id column to 'record_id'
-    review_results_df <- review_results_df %>% rename(screening_id=sid)
+    review_results_df <- review_results_df %>% rename(screening_id=sid),
+    #else make a screening_id column
+    review_results_df$screening_id<-review_results_df$id
+    )
+    
     ##rename (rayyan) full text id column to 'record_id'
     review_results_df <- review_results_df %>% rename(fulltextscreening_id=id)
     #clear "rayyan-" from string and coerce to integer
