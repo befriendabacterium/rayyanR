@@ -5,6 +5,7 @@
 #' @param update_local option to overwrite existing json file containing the credentials with the new, updated credentials. Defaults to TRUE.
 #'
 #' @return an api environment to be passed to the other functions
+#' @export
 refresh_tokens <- function(
     creds, update_local=T
 ) {
