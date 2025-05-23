@@ -1,5 +1,5 @@
 
-# rayyanR (v0.1)
+# rayyanR (v0.2)
 
 [![Project Status: Active - The project has reached a stable, usable
 state and is being actively
@@ -21,16 +21,18 @@ remotes::install_github("https://github.com/befriendabacterium/rayyanR")
 ```
 ### Package overview
 
-*N.B. The current version of the package is very early stage, probably very buggy and limited to reviews where the record/abstract and report/full text stage data are stored in separate Rayyan reviews. Nonetheless, as I've gotten it working for my systematic review at least, I thought it useful to create an early pre-release. As well as acting as a marker for myself of when things worked for my review, it also provides people with an opportunity to try it on their reviews and flag early bugs in GitHub Issues, ahead of a first proper release.*
+*N.B. The current version of the package is very early stage, probably very buggy. Nonetheless, as I've gotten it working for my systematic reviews at least, I thought it useful to create an early pre-release. As well as acting as a marker for myself of when things worked for my review, it also provides people with an opportunity to try it on their reviews and flag early bugs in GitHub Issues, ahead of a first proper release.*
 
-The current, pre-release version of the package is intended to be an interface to v1 of the Rayyan API, which allows you to download review data from Rayyan (reviewresults.R), and feed it into a PRISMA2020 diagram alongside pre-screening data (rayyan2PRISMA2020.R). Currently, it will only work (hopefully...) with 'old school' Rayyan reviews from a time where there was not a full text screening stage, and so the record/abstract and report/full text stage data are stored in separate Rayyan reviews. This is because whilst having both stages in one review is the now the recommended implementation of Rayyan, the API does not currently have an endpoint to the Full Text stage of a review with two stages (I assume because this feature was added to Rayyan fairly recently). But hopefully this will be implemented soon, and I can incorporate it into the package soon (I am speaking to Rayyan about this)!
+The current, pre-release version of the package is intended to be an interface to v1 of the Rayyan API, which allows you to download review data from Rayyan (reviewresults.R), and feed it into a PRISMA2020 diagram alongside pre-screening data (rayyan2PRISMA2020.R). This second pre-release version (v0.2) is compatible with Rayyan reviews which have both stages in one review - specified via the 'recordsandreports_review_id' option in reviewresults() - which is the recommended implementation of Rayyan. However, rayyanR will also work with legacy and non-standard implementations of Rayyan, where the records and reports stages are stored in separate Rayyan reviews (previously doing full text screening in the same Rayyan review was not an option), provided you specify these in the records_review_id and reports_review_id options in reviewresults(). However you read in the data, reviewresults() will collate them into one dataframe with both records and reports stage results.
 
 To (attempt to) use the current pre-release version of the package in its entirity:
 
 1. Make a Rayyan review for the report/abstract stage of your review, and do your screening with another reviewer.
 2. Export the results within Rayyan as a .ris file, and upload them into a new Rayyan review for the report/full text stage. Do your screening with another reviewer.
-3. Feed both record and report review IDs into the reviewresults() function alongside your API tokens
-4. Optionally, feed the resulting dataframe in as the 'screening_recordsandreports.R' parameter of 'rayyan2PRISMA2020.R', alongside your Identification (searches and deduplication) stage data and some other parameters, to make a PRISMA2020 diagram with the [PRISMA2020 R package](https://github.com/prisma-flowdiagram/PRISMA2020).
+3. If not done so previously, after having requested access to the API via the [Request Form](http://ryn.ai/APIRequestForm), manually download your Rayyan API tokens to somewhere convenient in your working directory. You can do this by going into Rayyan web and clicking the icon next to the gear in the top right, and then your name. Generate (if necessary) and download the .JSON with your Access and Refresh tokens. Keep these safe and secret and don't push them to your GitHub repo, for example!
+4. If it's been a while (over an hour or so? not sure how long tokens last exactly but it is a short time) since you last used RayyanR, then refresh your tokens using refresh_tokens(). You can either feed this directly into an R object to store your API tokens, or overwrite the local .JSON with your API keys by using update_local=T in the refresh_tokens() function (which we recommend anyway and is hence the default) and then read it in as an R object separately using jsonlite::read_json().
+5. Feed either the records and reports review ID (for standard Rayyan reviews with both stages in one review) or the record and report review IDs into the reviewresults() function, alongside the R object holding your API tokens.
+6. Optionally, feed the resulting dataframe in as the 'screening_recordsandreports.R' parameter of 'rayyan2PRISMA2020.R', alongside your Identification (searches and deduplication) stage data and some other parameters, to make a PRISMA2020 diagram with the [PRISMA2020 R package](https://github.com/prisma-flowdiagram/PRISMA2020).
 
 The dataframe produced by reviewresults() will be a bit messy, as it currently reads in all Rayyan Labels and Exclusion Reasons from all reviewers (!). However, provided you specify the exclusion reason strings you want to tally up exactly and you have not used specified them both as Labels *and* Exclusion Reasons in Rayyan, then it should manage to tally them up correctly...
 
