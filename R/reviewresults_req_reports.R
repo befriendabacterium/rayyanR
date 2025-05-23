@@ -14,7 +14,7 @@
 reviewresults_req_reports <- function(api_tokens, review_id) {
   
   stages_route<-paste0("/api/v1/reviews/", review_id, "/facets?facets[stages]=1")
-  url <- paste0("https://rayyan.ai",  stages)
+  url <- paste0("https://rayyan.ai",  stages_route)
   req <- httr2::request(url)
   req <- httr2::req_auth_bearer_token(req, api_tokens$access_token)
   resp <- httr2::req_perform(req)
