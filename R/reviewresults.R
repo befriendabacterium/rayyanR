@@ -85,8 +85,6 @@ reviewresults <- function(api_tokens, recordsandreports_review_id=NULL, records_
     colnames(review_results_df) <- gsub("customizations___EXR_", "report_exreason_", colnames(review_results_df))
     ##replace 'customizations_labels' with 'record_label'
     colnames(review_results_df) <- gsub("customizations_labels", "report_label", colnames(review_results_df))
-    #make a screening_id column
-    review_results_df$screening_id <- review_results_df$id
     #make a fulltextscreening_id column
     review_results_df$fulltextscreening_id <- review_results_df$id
 
