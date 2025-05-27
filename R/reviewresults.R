@@ -91,7 +91,7 @@ reviewresults <- function(api_tokens, recordsandreports_review_id=NULL, records_
     #if 'sid' column exists, rename to 'screening_id'
     ifelse("sid" %in% colnames(review_results_df),
     ##rename (rayyan) screening id column to 'record_id'
-    review_results_df <- review_results_df %>% rename(screening_id=sid),
+    review_results_df$screening_id<-review_results_df$sid,
     #else make a screening_id column
     review_results_df$screening_id<-review_results_df$id
     
