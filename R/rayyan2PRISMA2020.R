@@ -18,7 +18,6 @@ rayyan2PRISMA2020<-function(identification_databases=NULL,
                             included_studies_n=NULL
                             ){
 
-  
 # CALCULATE NUMBERS FOR PRISMA ------------------------------------------------------------
   
 ## 1.1: PREVIOUS STUDIES -------------------------------------------------------
@@ -74,10 +73,15 @@ S3.2_sought_reports_n<-nrow(S3.2_sought_reports)
 nofulltext_colstring<-stringr::str_replace_all(nofulltext_string,' |/','.')
   
 #make a 'column finder' vector by appending the column prefix
-colfinder<-paste('report_label_',nofulltext_colstring, sep='')
+colfinder<-paste('report.*',nofulltext_colstring, sep='')
   
 #identify columns holding the exclusion reasons
-nofulltext_columns<-match(colfinder,colnames(S3.2_sought_reports))
+nofulltext_columns<-grep(colfinder,colnames(S3.2_sought_reports))
+
+#make default not retrieved 0
+S3.3_notretrieved_reports_n<-0
+
+if(length(nofulltext_columns)!=0){
 
 #dataframe of records for which full text was not retrieved
 ifelse (is.na(nofulltext_columns),
@@ -85,12 +89,16 @@ ifelse (is.na(nofulltext_columns),
   S3.3_notretrieved_reports<-data.frame(author=character()),
   #else if there is a 'no full text' column then subset out rows where no full text available (==1)
   S3.3_notretrieved_reports<-S3.2_sought_reports[which(S3.2_sought_reports[,nofulltext_columns]==1),])
+  #number of not retrieved
+  S3.3_notretrieved_reports_n<-nrow(S3.3_notretrieved_reports)
+}
 
-#number of not retrieved
-S3.3_notretrieved_reports_n<-nrow(S3.3_notretrieved_reports)
-S3.3_notretrieved_reports_n
-  
 ## 4.2: REPORTS ASSESSED FOR ELIGIBILITY ------------------------------------------------------
+
+#make default not retrieved 0
+S4.2_assessed_reports<-S3.2_sought_reports
+
+if(length(nofulltext_columns)!=0){
   
 #dataframe of records for which full text was not retrieved
 ifelse (is.na(nofulltext_columns),
@@ -98,6 +106,7 @@ ifelse (is.na(nofulltext_columns),
         S4.2_assessed_reports<-S3.2_sought_reports,
         #else if there is a 'no full text' column then subset out rows where no full text available (==1)
         S4.2_assessed_reports<-S3.2_sought_reports[which(is.na(S3.2_sought_reports[,nofulltext_columns])),])
+}
 
 S4.2_assessed_reports_n<-nrow(S4.2_assessed_reports)
 S4.2_assessed_reports_n
@@ -150,10 +159,10 @@ for (c in 1:length(exclusionreasons_colstrings)){
 }
 
 #make a 'column finder' vector by appending the column prefix
-colfinder<-paste('report_label_',exclusionreasons_colstrings, sep='')
+colfinder<-paste('report.*',exclusionreasons_colstrings, sep='')
 
 #identify columns holding the exclusion reasons
-exclusion_reason_columns<-match(colfinder,colnames(S4.3_excluded_reports))
+exclusion_reason_columns<-grep(colfinder,colnames(S4.3_excluded_reports))
 
 #tally up the reasons for exclusion
 exclusion_reasons_tally<-colSums(S4.3_excluded_reports[,exclusion_reason_columns], na.rm=T)
