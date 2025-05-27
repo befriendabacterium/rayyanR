@@ -20,7 +20,7 @@ reviewresults <- function(api_tokens, recordsandreports_review_id=NULL, records_
     bodies[[length(bodies)+1]]<-body_records #add record body to list
     names(bodies)[length(bodies)]<-c('records')
     body_reports<-reviewresults_req_reports(api_tokens, review_id=recordsandreports_review_id)
-    bodies[[length(bodies)+1]]<-body_records #add report body to list
+    bodies[[length(bodies)+1]]<-body_reports #add report body to list
     names(bodies)[length(bodies)]<-c('reports')
   }
   
@@ -70,8 +70,8 @@ reviewresults <- function(api_tokens, recordsandreports_review_id=NULL, records_
     colnames(review_results_df) <- gsub("customizations___EXR_", "record_exreason_", colnames(review_results_df))
     ##replace 'customizations_labels' with 'record_label'
     colnames(review_results_df) <- gsub("customizations_labels", "record_label", colnames(review_results_df))
-    #rename (rayyan) id column to 'record_id'
-    review_results_df <- review_results_df %>% rename(screening_id=id)
+    #make a screening_id column
+    review_results_df$screening_id <- review_results_df$id
     #assign results df to explicitly stage-labelled df
     review_results_df_records<-review_results_df
     }
@@ -85,21 +85,20 @@ reviewresults <- function(api_tokens, recordsandreports_review_id=NULL, records_
     colnames(review_results_df) <- gsub("customizations___EXR_", "report_exreason_", colnames(review_results_df))
     ##replace 'customizations_labels' with 'record_label'
     colnames(review_results_df) <- gsub("customizations_labels", "report_label", colnames(review_results_df))
-    
+    #make a fulltextscreening_id column
+    review_results_df$fulltextscreening_id <- review_results_df$id
+
     #if 'sid' column exists, rename to 'screening_id'
     ifelse("sid" %in% colnames(review_results_df),
     ##rename (rayyan) screening id column to 'record_id'
-    review_results_df <- review_results_df %>% rename(screening_id=sid),
+    review_results_df$screening_id<-review_results_df$sid,
     #else make a screening_id column
     review_results_df$screening_id<-review_results_df$id
+    
     )
     
-    ##rename (rayyan) full text id column to 'record_id'
-    review_results_df <- review_results_df %>% rename(fulltextscreening_id=id)
     #clear "rayyan-" from string and coerce to integer
     review_results_df$screening_id <- as.integer(gsub("rayyan-", "", review_results_df$screening_id))
-    #move screening ids to start of dataframe after IDs for neatness/order everything in order of review
-    review_results_df<-review_results_df %>% relocate(screening_id, .before = 'fulltextscreening_id')
     #assign results df to explicitly stage-labelled df
     review_results_df_reports<-review_results_df
     }
@@ -119,6 +118,8 @@ reviewresults <- function(api_tokens, recordsandreports_review_id=NULL, records_
     review_results_df <- dplyr::left_join(review_results_df_records, review_results_df_reports, by='screening_id', suffix=c("",".y")) %>%  select(-ends_with(".y"))
     #check results (excluded at record stage should have no decisions at report)
     #test<-review_results_df[,c("record_decision_consensus","report_decision_consensus")]
+    #move screening ids to start of dataframe after IDs for neatness/order everything in order of review
+    review_results_df<-review_results_df %>% relocate(screening_id, .after = 'id')
     review_results_df<-review_results_df %>% relocate(fulltextscreening_id, .after = 'screening_id') #move full text screening id after screening id
     review_results_df<-review_results_df %>% relocate(search_ids, .before = 'screening_id') #move search id before screening id (because this is the order of things)
       }

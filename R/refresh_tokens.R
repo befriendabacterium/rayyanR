@@ -11,7 +11,7 @@ refresh_tokens <- function(
 ) {
   api_tokens <- jsonlite::read_json(creds)
   api_tokens_fresh <- suppressWarnings(
-    oauth_flow_refresh(
+    httr2::oauth_flow_refresh(
       httr2::oauth_client("rayyan.ai", "https://rayyan.ai/oauth/token"),
       refresh_token = api_tokens$refresh_token,
       scope = NULL,

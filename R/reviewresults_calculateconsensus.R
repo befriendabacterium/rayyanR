@@ -9,7 +9,7 @@
 #'
 #' @return the R object containing the dataframe with a new column 'customizations_included_consensus' with the consensus where there is one (or 'conflict' if not)
 #' @export
-reviewresults_calculateconsensus <- function(review_results_df, review_info) {
+reviewresults_calculateconsensus <- function(review_results_df) {
   
   #identify included cols by number
   included_colids<-grep('customizations_included',colnames(review_results_df))
