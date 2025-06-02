@@ -1,5 +1,4 @@
-
-# rayyanR (v0.2)
+# rayyanR (v0.21)<img src="graphics/hexsticker_web2.png" align="right" width="40%"/><test>
 
 [![Project Status: Active - The project has reached a stable, usable
 state and is being actively
