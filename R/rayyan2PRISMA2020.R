@@ -239,7 +239,7 @@ PRISMAdata_list<-PRISMA2020::PRISMA_data(PRISMAdata)
 PRISMAdiagram<-PRISMA2020::PRISMA_flowdiagram(PRISMAdata_list, previous = F, detail_databases = T, other = F, fontsize = 12)
 
 #append the list used to make the diagram to the object as handy to have
-PRISMA2020diagram[['data']]<-PRISMAdata
+PRISMAdiagram[['data']]<-PRISMAdata
 
 return(PRISMAdiagram)
 
