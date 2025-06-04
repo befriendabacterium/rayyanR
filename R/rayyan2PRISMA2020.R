@@ -120,9 +120,6 @@ S4.3_excluded_reports_n
 #reformat way Rayyan has in column names
 exclusionreasons_colstrings<-stringr::str_replace_all(exclusionreasons_reports,' |/','.')
 
-#make grep string so specifies report followed by string (not record)
-exclusionreasons_colstrings<-paste('report.*',exclusionreasons_colstrings, sep='')
-
 for (c in 1:length(exclusionreasons_colstrings)){
   
   #find matching columns
@@ -159,7 +156,8 @@ for (c in 1:length(exclusionreasons_colstrings)){
 }
 
 #make a 'column finder' vector by appending the column prefix
-colfinder<-paste('report.*',exclusionreasons_colstrings, sep='')
+colfinder <- paste(paste("report.*", exclusionreasons_colstrings, 
+                         sep = ""), collapse ='|')
 
 #identify columns holding the exclusion reasons
 exclusion_reason_columns<-grep(colfinder,colnames(S4.3_excluded_reports))
